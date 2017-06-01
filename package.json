@@ -1,0 +1,26 @@
+{
+  "name": "nyc-restaurant-inspection-records",
+  "version": "1.0.0",
+  "description": "App that finds health inspection records of restaurants in New York City via a Socrata Open Data API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NYC",
+    "New York City",
+    "restaurants",
+    "health inspections",
+    "open data",
+    "Socrata",
+    "API"
+  ],
+  "author": "Gary Pang",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "morgan": "^1.8.1",
+    "request": "^2.81.0"
+  }
+}

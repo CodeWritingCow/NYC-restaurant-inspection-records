@@ -49,6 +49,21 @@ app.get('/flushing', (req, res) => {
 	});
 });
 
+app.get('/zipcode/:id', (req, res) => {
+	request(`https://data.cityofnewyork.us/resource/43nn-pn8j.json?zipcode=${req.params.id}`, (error, response, body) => {
+		if (req.params.id.length !== 5) {
+			return res.send(`ERROR: Zip code should have 5 digits. You put in ${req.params.id.length}`);
+		}
+		if (JSON.parse(body).length === 0) {
+			return res.send('Nothing was found. Please make sure you are using a New York City ZIP code.');
+		}
+		if (!error && response.statusCode === 200) {
+			res.send(body);
+		} else {
+			return error;
+		}
+	});
+});
 
 // Start server
 app.listen(port, () => {

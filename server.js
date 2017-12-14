@@ -15,12 +15,13 @@ app.use(express.static(__dirname));
 const port = process.env.PORT || 8080;
 const token = process.env.TOKEN;
 
-// SET THE ROUTES
+const url = 'https://data.cityofnewyork.us/resource/43nn-pn8j.json';
+
+// SET ROUTES
 // =======================================
-// "req, res" stand for "request, response."
 
 app.get('/', (req, res) => {
-	request('https://data.cityofnewyork.us/resource/43nn-pn8j.json?boro=queens', (error, response, body) =>{
+	request(`${url}?boro=queens`, (error, response, body) =>{
 		if (!error && response.statusCode === 200) {
 			res.send(body);
 		} else {
@@ -30,7 +31,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/chinese', (req, res) => {
-	request('https://data.cityofnewyork.us/resource/43nn-pn8j.json?cuisine_description=chinese', (error, response, body) =>{
+	request(`${url}?cuisine_description=chinese`, (error, response, body) =>{
 		if (!error && response.statusCode === 200) {
 			res.send(body);
 		} else {
@@ -40,7 +41,7 @@ app.get('/chinese', (req, res) => {
 });
 
 app.get('/flushing', (req, res) => {
-	request('https://data.cityofnewyork.us/resource/43nn-pn8j.json?zipcode=11358', (error, response, body) => {
+	request(`${url}?zipcode=11358`, (error, response, body) => {
 		if (!error && response.statusCode === 200) {
 			res.send(body);
 		} else {
@@ -50,7 +51,7 @@ app.get('/flushing', (req, res) => {
 });
 
 app.get('/zipcode/:id', (req, res) => {
-	request(`https://data.cityofnewyork.us/resource/43nn-pn8j.json?zipcode=${req.params.id}`, (error, response, body) => {
+	request(`${url}?zipcode=${req.params.id}`, (error, response, body) => {
 		if (req.params.id.length !== 5) {
 			return res.send(`ERROR: Zip code should have 5 digits. You put in ${req.params.id.length}`);
 		}
@@ -66,7 +67,7 @@ app.get('/zipcode/:id', (req, res) => {
 });
 
 app.get('/borough/:id', (req, res) => {
-	request(`https://data.cityofnewyork.us/resource/43nn-pn8j.json?boro=${req.params.id.toUpperCase()}`, (error, response, body) => {
+	request(`${url}?boro=${req.params.id.toUpperCase()}`, (error, response, body) => {
 		if (JSON.parse(body).length === 0) {
 			return res.send('Nothing was found. Please make sure you are using one of five borough names: "Bronx", "Manhattan", "Queens", "Brooklyn" or "Staten Island".');
 		}		
@@ -81,4 +82,5 @@ app.get('/borough/:id', (req, res) => {
 // Start server
 app.listen(port, () => {
 	console.log(`App is running on http://localhost: ${port}`);
+	console.log(`DOHMH New York City Restaurant Inspection Results: ${url}`);
 });

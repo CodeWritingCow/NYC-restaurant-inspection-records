@@ -65,6 +65,19 @@ app.get('/zipcode/:id', (req, res) => {
 	});
 });
 
+app.get('/borough/:id', (req, res) => {
+	request(`https://data.cityofnewyork.us/resource/43nn-pn8j.json?boro=${req.params.id.toUpperCase()}`, (error, response, body) => {
+		if (JSON.parse(body).length === 0) {
+			return res.send('Nothing was found. Please make sure you are using one of five borough names: "Bronx", "Manhattan", "Queens", "Brooklyn" or "Staten Island".');
+		}		
+		if (!error && response.statusCode === 200) {
+			res.send(body);
+		} else {
+			return error;
+		}		
+	});
+});
+
 // Start server
 app.listen(port, () => {
 	console.log(`App is running on http://localhost: ${port}`);

@@ -1,5 +1,6 @@
 const express 		= require('express');
 const app 			= express();
+const hbs			= require('hbs');
 const morgan 		= require('morgan'); // morgan is a HTTP request logger middleware
 const request 		= require('request'); // request makes HTTP calls
 const bodyParser 	= require('body-parser'); // adds body object to request so app can access POST parameters
@@ -7,6 +8,7 @@ const bodyParser 	= require('body-parser'); // adds body object to request so ap
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
 // log all HTTP requests in the console
@@ -26,6 +28,7 @@ app.get('/', (req, res) => {
 	request(`${url}?boro=queens`, (error, response, body) =>{
 		if (!error && response.statusCode === 200) {
 			res.render('home.hbs', {
+				pageTitle: 'NYC Restaurant Inspection API',
 				body: JSON.parse(body)
 			});
 		} else {

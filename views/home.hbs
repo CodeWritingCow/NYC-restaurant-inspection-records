@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>NYC Restaurant Inspection API</title>
+    </head>
+    <body>
+    	<h1>NYC Restaurant Inspection API</h1>
+    	{{#each body}}
+    		<div>
+	    		<h3>{{this.dba}}</h3>
+    			<ul style="list-style-type:none;">
+    				{{#each this}}
+    				<li>{{@key}}: {{this}}</li>
+    				{{/each}}
+ 		    <!--	<li>{{@key}} {{this.cuisine_description}}</li>
+		    		<li>{{this.record_date}}</li>
+		    		<li>{{this.boro}}</li>
+		    		<li>{{this.inspection_date}}</li>
+		    		<li>{{this.building}}</li>
+		    		<li>{{this.zipcode}}</li>
+		    		<li>{{this.score}}</li>
+		    		<li>{{this.phone}}</li>
+		    		<li>{{this.street}}</li>
+		    		<li>{{this.grade}}</li>
+		    		<li>{{this.critical_flag}}</li>
+		    		<li>{{this.camis}}</li>
+		    		<li>{{this.action}}</li>
+		    		<li>{{this.violation_code}}</li>
+		    		<li>{{this.violation_description}}</li>
+		    		<li>{{this.grade_date}}</li>
+		    		<li>{{this.inspection_type}}</li> -->
+    			</ul>
+    		</div>
+    	{{/each}}
+    </body>
+</html>

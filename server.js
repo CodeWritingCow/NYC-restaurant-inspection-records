@@ -86,6 +86,44 @@ app.get('/borough/:id', (req, res) => {
 	});
 });
 
+app.get('/search', (req, res) => {
+	res.render('search.hbs', {
+		pageTitle: 'Search NYC Restaurant Inspection Database'
+	});	
+});
+
+app.post('/search', (req, res) => {
+	// res.send(`You searched for zipcode: ${req.body.zipcode} in ${req.body.borough}`);
+
+	var zipcode = req.body.zipcode;
+	// var borough = req.body.borough.toLowerCase();
+
+	if (zipcode.length > 0 && zipcode.length !== 5) {
+		return res.send(`ERROR: Zip code should have 5 digits. You put in ${zipcode.length}`);
+	}
+
+
+
+	console.log(`${zipcode} and ${typeof zipcode} and length: ${zipcode.length}`);
+	// console.log(`${borough} and ${typeof borough}`);
+	// res.send(`${zipcode} and ${borough}`);
+
+	// request(`${url}?zipcode=${zipcode}&boro=${borough}`, (error, response, body) => {
+	// 	res.send(body);
+	// });
+
+	request(`${url}?zipcode=${zipcode}`, (error, response, body) => {
+		if (JSON.parse(body).length === 0) {
+			return res.send('Nothing was found. Please make sure you are using a New York City ZIP code.');
+		}
+		if (!error && response.statusCode === 200) {
+			res.render("search.hbs", {body: JSON.parse(body)});
+		} else {
+			return error;
+		}		
+	});
+});
+
 // Start server
 app.listen(port, () => {
 	console.log(`App is running on http://localhost: ${port}`);

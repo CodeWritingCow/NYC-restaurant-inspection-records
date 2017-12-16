@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>NYC Restaurant Inspection API</title>
+    </head>
+    <body>
+    	{{> header}}
+    	<form action="/search" method="POST">
+    		<label for="zipcode">Zipcode</label>
+    		<input type="text" name="zipcode" placeholder="zipcode">
+    		<input type="text" name="borough" placeholder="borough">
+<!--     		<label for="borough">Borough</label>
+			<select id="borough" name="borough">
+				<option value="" disabled selected>None</option>
+				<option value="Bronx">Bronx</option>
+				<option value="Brooklyn">Brooklyn</option>
+				<option value="Manhattan">Manhattan</option>
+				<option value="Queens">Queens</option>
+				<option value="Staten Island">Staten Island</option>
+			</select> -->    		
+    		<input type="submit" value="Search">
+    	</form>
+
+    	{{#each body}}
+    		<div style="margin-top: 50px;">
+	    		<h3>{{this.dba}}</h3>
+    			<ul style="list-style-type:none;">
+    				{{#each this}}
+    				<li><strong>{{@key}}:</strong> {{this}}</li>
+    				{{/each}}
+ 		    <!--	<li>{{@key}} {{this.cuisine_description}}</li>
+		    		<li>{{this.record_date}}</li>
+		    		<li>{{this.boro}}</li>
+		    		<li>{{this.inspection_date}}</li>
+		    		<li>{{this.building}}</li>
+		    		<li>{{this.zipcode}}</li>
+		    		<li>{{this.score}}</li>
+		    		<li>{{this.phone}}</li>
+		    		<li>{{this.street}}</li>
+		    		<li>{{this.grade}}</li>
+		    		<li>{{this.critical_flag}}</li>
+		    		<li>{{this.camis}}</li>
+		    		<li>{{this.action}}</li>
+		    		<li>{{this.violation_code}}</li>
+		    		<li>{{this.violation_description}}</li>
+		    		<li>{{this.grade_date}}</li>
+		    		<li>{{this.inspection_type}}</li> -->
+    			</ul>
+    		</div>
+    	{{/each}}
+    </body>
+</html>

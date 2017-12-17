@@ -4,6 +4,8 @@ const hbs			= require('hbs');
 const morgan 		= require('morgan'); // morgan is a HTTP request logger middleware
 const request 		= require('request'); // request makes HTTP calls
 const bodyParser 	= require('body-parser'); // adds body object to request so app can access POST parameters
+const querystring 	= require('querystring');
+const _ 			= require('lodash');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -93,30 +95,36 @@ app.get('/search', (req, res) => {
 });
 
 app.post('/search', (req, res) => {
-	// res.send(`You searched for zipcode: ${req.body.zipcode} in ${req.body.borough}`);
-
+	console.log(req.body);
 	var zipcode = req.body.zipcode;
-	// var borough = req.body.borough.toLowerCase();
+	var borough = req.body.borough;
 
-	if (zipcode.length > 0 && zipcode.length !== 5) {
-		return res.send(`ERROR: Zip code should have 5 digits. You put in ${zipcode.length}`);
+	var data = req.body;
+
+	// Remove zipcode query string if it's empty
+	if (data.zipcode.length === 0) {
+		delete data.zipcode;
 	}
 
+	// Merge query strings. Exclude undefined query strings.
+	var urlQuery = querystring.stringify(_.merge(data));
 
+	console.log(urlQuery);
+	console.log(`${url}?${urlQuery}`);
 
-	console.log(`${zipcode} and ${typeof zipcode} and length: ${zipcode.length}`);
-	// console.log(`${borough} and ${typeof borough}`);
-	// res.send(`${zipcode} and ${borough}`);
+	if (zipcode.length > 0 && zipcode.length !== 5) {
+		return res.render("search.hbs", {errorMessage: `ERROR: Zip code should have 5 digits. You put in ${zipcode.length}`});
+	}
 
-	// request(`${url}?zipcode=${zipcode}&boro=${borough}`, (error, response, body) => {
-	// 	res.send(body);
-	// });
+	// if zipcode contains letters, return errorMessage
+	// ADD CODE HERE
 
-	request(`${url}?zipcode=${zipcode}`, (error, response, body) => {
+	request(`${url}?${urlQuery}`, (error, response, body) => {
 		if (JSON.parse(body).length === 0) {
-			return res.send('Nothing was found. Please make sure you are using a New York City ZIP code.');
+			return res.render("search.hbs", {errorMessage: 'Your search turned up no records.'});
 		}
 		if (!error && response.statusCode === 200) {
+			console.log(`${url}?${urlQuery}`);
 			res.render("search.hbs", {body: JSON.parse(body)});
 		} else {
 			return error;

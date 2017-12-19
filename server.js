@@ -106,6 +106,11 @@ app.post('/search', (req, res) => {
 		delete data.zipcode;
 	}
 
+	// Remove business name query string if it's empty
+	if (data.dba.length === 0) {
+		delete data.dba;
+	}
+
 	// Merge query strings. Exclude undefined query strings.
 	var urlQuery = querystring.stringify(_.merge(data));
 

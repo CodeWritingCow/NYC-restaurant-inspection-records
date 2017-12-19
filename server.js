@@ -137,6 +137,19 @@ app.post('/search', (req, res) => {
 	});
 });
 
+app.get('/dba/:id', (req, res) => {
+	var businessName = req.params.id.toLowerCase();
+
+	request(`${url}`, (error, response, body) => {
+		var searchResults = JSON.parse(body).filter((business) => {
+			console.log(business.dba.toLowerCase());
+			return business.dba.toLowerCase().includes(businessName);
+		});
+		console.log(searchResults.length);
+		res.send(searchResults);
+	});
+});
+
 // Start server
 app.listen(port, () => {
 	console.log(`App is running on http://localhost: ${port}`);

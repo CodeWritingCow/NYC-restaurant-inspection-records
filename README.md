@@ -1,7 +1,7 @@
 # NYC-restaurant-inspection-records
 A simple API for accessing New York City restaurant' inspection records.
 
-Live demo: nyc-restaurant-inspector.herokuapp.com
+Live demo: https://nyc-restaurant-inspector.herokuapp.com
 
 If you want to run the API on a local server, you need to use Node.js. Type `node server.js` in command line to start.
 

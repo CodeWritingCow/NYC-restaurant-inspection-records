@@ -143,7 +143,7 @@ app.get('/dba/:id', (req, res) => {
 	// If query string is added to url, console.log(business.dba) works
 	// But console.log(business.dba.toLowerCase()) throws an error
 	// TypeError: Cannot read property 'toLowerCase' of undefined
-	// Turns out at least one 'business' has type 'undefined' for some reason
+	// Turns out at least one 'business' has 'undefined' for some reason
 	request(`${url}?boro=queens&zipcode=11358`, (error, response, body) => {
 		var searchResults = JSON.parse(body).filter((business) => {
 			console.log(`${business.dba} is type ${typeof business.dba}`);

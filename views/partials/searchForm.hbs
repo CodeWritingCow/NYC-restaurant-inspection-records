@@ -1,81 +1,89 @@
-<form action="/search" method="POST">
-	<fieldset>
-		<label for="dba">Business Name</label>
-		<input type="text" name="dba" placeholder="Business name">
-	</fieldset>
+<div class="row">
+<form class="col s12" action="/search" method="POST">
+	<div class="row">
+		<div class="input-field col s6">
+			<label for="dba">Business Name</label>
+			<input type="text" name="dba" placeholder="Business name">
+		</div>
 
-	<fieldset>
-		<label for="cuisine_description">Cuisine Type</label>
-		<select name="cuisine_description" id="cuisine_description">
-			<option value="" disabled selected>None</option>
-			<option value="American">American</option>
-			<option value="Asian">Asian</option>
-			<option value="Bagels/Pretzels">Bagels/Pretzels</option>
-			<option value="Bakery">Bakery</option>
-			<option value="Delicatessen">Delicatessen</option>
-			<option value="Donuts">Donuts</option>
-			<option value="Chinese">Chinese</option>
-			<option value="Chinese/Japanese">Chinese/Japanese</option>
-			<option value="Japanese">Japanese</option>
-			<option value="Italian">Italian</option>
-			<option value="Pizza">Pizza</option>
-			<option value="Pizza/Italian">Pizza/Italian</option>
-			<option value="Mexican">Mexican</option>
-			<option value="Tex-Mex">Tex-Mex</option>
-			<option value="Latin (Cuban, Dominican, Puerto Rican, South & Central American)">Latin (Cuban, Dominican, Puerto Rican, South & Central American)</option>
-			<option value="Armenian">Armenian</option>
-			<option value="Caribbean">Caribbean</option>
-			<option value="Chicken">Chicken</option>
-			<option value="Hamburgers">Hamburgers</option>
-			<option value="Ice Cream, Gelato, Yogurt, Ices">Ice Cream, Gelato, Yogurt, Ices</option>
-			<option value="Indian">Indian</option>
-			<option value="Eastern European">Eastern European</option>
-			<option value="Ethiopian">Ethiopian</option>
-			<option value="Filipino">Filipino</option>
-			<option value="Fruits/Vegetables">Fruits/Vegetables</option>
-			<option value="Greek">Greek</option>
-			<option value="German">German</option>
-			<option value="CafÃ©/Coffee/Tea">Cafe</option>
-			<option value="Jewish/Kosher">Jewish/Kosher</option>
-			<option value="Mediterranean">Mediterranean</option>
-			<option value="Pancakes/Waffles">Pancakes/Waffles</option>
-			<option value="Peruvian">Peruvian</option>
-			<option value="Polish">Polish</option>
-			<option value="Russian">Russian</option>
-			<option value="Salads">Salads</option>
-			<option value="Sandwiches">Sandwiches</option>
-			<option value="Sandwiches/Salads/Mixed Buffet">Sandwiches/Salads/Mixed Buffet</option>
-			<option value="Seafood">Seafood</option>
-			<option value="Spanish">Spanish</option>
-			<option value="Steak">Steak</option>
-			<option value="Soul Food">Soul Food</option>
-			<option value="Thai">Thai</option>
-			<option value="Vegetarian">Vegetarian</option>
-			<option value="Vietnamese/Cambodian/Malaysia">Vietnamese/Cambodian/Malaysia</option>
-			<option value="Other">Other</option>
-		</select>
-	</fieldset>
+		<div class="input-field col s6">
+			<select name="cuisine_description" id="cuisine_description">
+				<option value="" disabled selected>None</option>
+				<option value="American">American</option>
+				<option value="Asian">Asian</option>
+				<option value="Bagels/Pretzels">Bagels/Pretzels</option>
+				<option value="Bakery">Bakery</option>
+				<option value="Delicatessen">Delicatessen</option>
+				<option value="Donuts">Donuts</option>
+				<option value="Chinese">Chinese</option>
+				<option value="Chinese/Japanese">Chinese/Japanese</option>
+				<option value="Japanese">Japanese</option>
+				<option value="Italian">Italian</option>
+				<option value="Pizza">Pizza</option>
+				<option value="Pizza/Italian">Pizza/Italian</option>
+				<option value="Mexican">Mexican</option>
+				<option value="Tex-Mex">Tex-Mex</option>
+				<option value="Latin (Cuban, Dominican, Puerto Rican, South & Central American)">Latin (Cuban, Dominican, Puerto Rican, South & Central American)</option>
+				<option value="Armenian">Armenian</option>
+				<option value="Caribbean">Caribbean</option>
+				<option value="Chicken">Chicken</option>
+				<option value="Hamburgers">Hamburgers</option>
+				<option value="Ice Cream, Gelato, Yogurt, Ices">Ice Cream, Gelato, Yogurt, Ices</option>
+				<option value="Indian">Indian</option>
+				<option value="Eastern European">Eastern European</option>
+				<option value="Ethiopian">Ethiopian</option>
+				<option value="Filipino">Filipino</option>
+				<option value="Fruits/Vegetables">Fruits/Vegetables</option>
+				<option value="Greek">Greek</option>
+				<option value="German">German</option>
+				<option value="CafÃ©/Coffee/Tea">Cafe</option>
+				<option value="Jewish/Kosher">Jewish/Kosher</option>
+				<option value="Mediterranean">Mediterranean</option>
+				<option value="Pancakes/Waffles">Pancakes/Waffles</option>
+				<option value="Peruvian">Peruvian</option>
+				<option value="Polish">Polish</option>
+				<option value="Russian">Russian</option>
+				<option value="Salads">Salads</option>
+				<option value="Sandwiches">Sandwiches</option>
+				<option value="Sandwiches/Salads/Mixed Buffet">Sandwiches/Salads/Mixed Buffet</option>
+				<option value="Seafood">Seafood</option>
+				<option value="Spanish">Spanish</option>
+				<option value="Steak">Steak</option>
+				<option value="Soul Food">Soul Food</option>
+				<option value="Thai">Thai</option>
+				<option value="Vegetarian">Vegetarian</option>
+				<option value="Vietnamese/Cambodian/Malaysia">Vietnamese/Cambodian/Malaysia</option>
+				<option value="Other">Other</option>
+			</select>
+			<label>Cuisine Type</label>
+		</div>
+	</div>
 
-	<fieldset>
-		<label for="zipcode">Zipcode</label>
-		<input type="text" name="zipcode" placeholder="zipcode">
-		
-<!-- 		<label for="street">Street</label>
-		<input disabled type="text" name="street" placeholder="street address">
+	<div class="row">
+		<div class="input-field col s6">
+			<label for="zipcode">Zipcode</label>
+			<input type="text" name="zipcode" placeholder="zipcode">
+			
+	<!-- 		<label for="street">Street</label>
+			<input disabled type="text" name="street" placeholder="street address">
 
-		<label for="city">City</label>
-		<input disabled type="text" name="city" placeholder="city"> -->
+			<label for="city">City</label>
+			<input disabled type="text" name="city" placeholder="city"> -->
+		</div>
 
-		<label for="boro">Borough</label>
-		<select id="boro" name="boro">
-			<option value="" disabled selected>None</option>
-			<option value="Bronx">Bronx</option>
-			<option value="Brooklyn">Brooklyn</option>
-			<option value="Manhattan">Manhattan</option>
-			<option value="Queens">Queens</option>
-			<option value="Staten Island">Staten Island</option>
-		</select>
-	</fieldset>
+		<div class="input-field col s6">
+			<select id="boro" name="boro">
+				<option value="" disabled selected>None</option>
+				<option value="Bronx">Bronx</option>
+				<option value="Brooklyn">Brooklyn</option>
+				<option value="Manhattan">Manhattan</option>
+				<option value="Queens">Queens</option>
+				<option value="Staten Island">Staten Island</option>
+			</select>
+			<label>Borough</label>
+		</div>
+
+	</div>
 
 <!-- 	<fieldset>
 		<label for="startDate">Start:</label>
@@ -84,5 +92,8 @@
 		<input disabled type="date" name="endDate">
 	</fieldset> -->
 
-	<input type="submit" value="Search">
+	<button class="btn waves-effect waves-light" type="submit">Search
+		<i class="material-icons right">search</i>
+	</button>
 </form>
+</div>

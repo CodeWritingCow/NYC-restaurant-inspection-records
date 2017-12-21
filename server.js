@@ -100,15 +100,14 @@ app.post('/search', (req, res) => {
 	var borough = req.body.borough;
 
 	var data = req.body;
+	var businessName = data.dba.toLowerCase();
+
+	// Remove business name query
+	delete data.dba;
 
 	// Remove zipcode query string if it's empty
 	if (data.zipcode.length === 0) {
 		delete data.zipcode;
-	}
-
-	// Remove business name query string if it's empty
-	if (data.dba.length === 0) {
-		delete data.dba;
 	}
 
 	// Merge query strings. Exclude undefined query strings.
@@ -123,14 +122,32 @@ app.post('/search', (req, res) => {
 
 	// if zipcode contains letters, return errorMessage
 	// ADD CODE HERE
-
+	
 	request(`${url}?${urlQuery}`, (error, response, body) => {
 		if (JSON.parse(body).length === 0) {
-			return res.render("search.hbs", {errorMessage: 'Your search turned up no records.'});
+			return res.render("search.hbs", {errorMessage: 'No results found.'});
 		}
+
 		if (!error && response.statusCode === 200) {
-			console.log(`${url}?${urlQuery}`);
-			res.render("search.hbs", {body: JSON.parse(body)});
+
+			// If user search includes restaurant name
+			if (businessName.length > 0) {
+				var searchResults = JSON.parse(body).filter((business) => {
+					if (business.dba) {
+						return business.dba.toLowerCase().includes(businessName);
+					}
+				});
+				console.log(`${searchResults.length} search results`);
+
+				if (searchResults.length === 0) {
+					return res.render("search.hbs", {errorMessage: 'No results found.'});
+				} else {
+					res.render("search.hbs", {body: searchResults});		
+				}				
+			} else {
+				console.log(`${url}?${urlQuery}`);
+				res.render("search.hbs", {body: JSON.parse(body)});
+			}
 		} else {
 			return error;
 		}		

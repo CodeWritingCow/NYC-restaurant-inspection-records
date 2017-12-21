@@ -27,16 +27,20 @@ const url = 'https://data.cityofnewyork.us/resource/43nn-pn8j.json';
 // =======================================
 
 app.get('/', (req, res) => {
-	request(`${url}?boro=queens`, (error, response, body) =>{
-		if (!error && response.statusCode === 200) {
-			res.render('home.hbs', {
-				pageTitle: 'NYC Restaurant Inspection API',
-				body: JSON.parse(body)
-			});
-		} else {
-			return error;
-		}
+	res.render('home.hbs', {
+		pageTitle: 'NYC Restaurant Inspection API'
 	});
+
+	// request(`${url}?boro=queens`, (error, response, body) =>{
+	// 	if (!error && response.statusCode === 200) {
+	// 		res.render('home.hbs', {
+	// 			pageTitle: 'NYC Restaurant Inspection API',
+	// 			body: JSON.parse(body)
+	// 		});
+	// 	} else {
+	// 		return error;
+	// 	}
+	// });
 });
 
 app.get('/chinese', (req, res) => {

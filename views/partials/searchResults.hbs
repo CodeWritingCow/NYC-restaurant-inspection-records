@@ -1,6 +1,10 @@
 {{errorMessage}}
 {{#each body}}
 	<div style="margin-top: 50px;">
+        <div class="row">
+            <div class="card hoverable">
+                <div class="card-content">
+                    
 		<h4>{{this.dba}}</h4>
 		<ul style="list-style-type:none;">
 			{{#each this}}
@@ -24,5 +28,8 @@
     		<li>{{this.grade_date}}</li>
     		<li>{{this.inspection_type}}</li> -->
 		</ul>
+                </div>
+            </div>
+        </div>        
 	</div>
 {{/each}}

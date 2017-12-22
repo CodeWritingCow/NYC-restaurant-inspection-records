@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>NYC Restaurant Inspection API</title>
+        <title>NYC Restaurant Inspector</title>
 		<!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 		<!--Import Google Icon Font-->    
@@ -12,10 +12,18 @@
     </head>
     <body>
     	{{> header}}
-    	<div class="container">
-	    	{{> searchForm}}    	
-	    	{{> searchResults}}
-    	</div>
+    	<main class="container" style="padding: 30px;">
+	    	<div class="section" style="text-align: center;">
+			    <h1>{{pageTitle}}</h1>
+			    <h5>How Safe Is Your Food?</h5>
+	    	</div>
+	    	<div class="divider"></div>
+	    	<div class="section">
+		    	{{> searchForm}}    	
+		    	{{> searchResults}}
+	    	</div>
+    	</main>
+    	{{> footer}}
     </body>
 
 	<!-- Compiled and minified JavaScript -->

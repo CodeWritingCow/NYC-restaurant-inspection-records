@@ -1,12 +1,12 @@
 <div class="row">
 <form class="col s12" action="/search" method="POST">
 	<div class="row">
-		<div class="input-field col s6">
+		<div class="input-field col s12 m6">
 			<label for="dba">Business Name</label>
-			<input type="text" name="dba" placeholder="Business name">
+			<input type="text" name="dba">
 		</div>
 
-		<div class="input-field col s6">
+		<div class="input-field col s12 m6">
 			<select name="cuisine_description" id="cuisine_description">
 				<option value="" disabled selected>None</option>
 				<option value="American">American</option>
@@ -61,9 +61,9 @@
 	</div>
 
 	<div class="row">
-		<div class="input-field col s6">
+		<div class="input-field col s12 m6">
 			<label for="zipcode">Zipcode</label>
-			<input type="text" name="zipcode" placeholder="zipcode">
+			<input type="text" name="zipcode">
 			
 	<!-- 		<label for="street">Street</label>
 			<input disabled type="text" name="street" placeholder="street address">
@@ -72,7 +72,7 @@
 			<input disabled type="text" name="city" placeholder="city"> -->
 		</div>
 
-		<div class="input-field col s6">
+		<div class="input-field col s12 m6">
 			<select id="boro" name="boro">
 				<option value="" disabled selected>None</option>
 				<option value="Bronx">Bronx</option>
@@ -93,7 +93,7 @@
 		<input disabled type="date" name="endDate">
 	</fieldset> -->
 
-	<button class="btn waves-effect waves-light" type="submit">Search
+	<button class="btn waves-effect waves-light center-align" type="submit">Search
 		<i class="material-icons right">search</i>
 	</button>
 </form>

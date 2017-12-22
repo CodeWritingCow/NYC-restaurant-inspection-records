@@ -28,7 +28,7 @@ const url = 'https://data.cityofnewyork.us/resource/43nn-pn8j.json';
 
 app.get('/', (req, res) => {
 	res.render('home.hbs', {
-		pageTitle: 'NYC Restaurant Inspection API'
+		pageTitle: 'NYC Restaurant Inspector'
 	});
 
 	// request(`${url}?boro=queens`, (error, response, body) =>{
@@ -94,7 +94,7 @@ app.get('/borough/:id', (req, res) => {
 
 app.get('/search', (req, res) => {
 	res.render('search.hbs', {
-		pageTitle: 'Search NYC Restaurant Inspection Database'
+		pageTitle: 'Search NYC Restaurant Inspections'
 	});	
 });
 
@@ -129,7 +129,9 @@ app.post('/search', (req, res) => {
 	
 	request(`${url}?${urlQuery}`, (error, response, body) => {
 		if (JSON.parse(body).length === 0) {
-			return res.render("search.hbs", {errorMessage: 'No results found.'});
+			return res.render("search.hbs", {
+				pageTitle: 'Search Results',
+				errorMessage: 'No results found.'});
 		}
 
 		if (!error && response.statusCode === 200) {
@@ -146,11 +148,16 @@ app.post('/search', (req, res) => {
 				if (searchResults.length === 0) {
 					return res.render("search.hbs", {errorMessage: 'No results found.'});
 				} else {
-					res.render("search.hbs", {body: searchResults});		
+					res.render("search.hbs", {
+						pageTitle: 'Search Results',
+						body: searchResults});		
 				}				
 			} else {
 				console.log(`${url}?${urlQuery}`);
-				res.render("search.hbs", {body: JSON.parse(body)});
+				res.render("search.hbs", {
+					body: JSON.parse(body),
+					pageTitle: 'Search Results'
+				});
 			}
 		} else {
 			return error;

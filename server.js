@@ -31,17 +31,6 @@ app.get('/', (req, res) => {
 	res.render('home.hbs', {
 		pageTitle: 'NYC Restaurant Inspector'
 	});
-
-	// request(`${url}?boro=queens`, (error, response, body) =>{
-	// 	if (!error && response.statusCode === 200) {
-	// 		res.render('home.hbs', {
-	// 			pageTitle: 'NYC Restaurant Inspection API',
-	// 			body: JSON.parse(body)
-	// 		});
-	// 	} else {
-	// 		return error;
-	// 	}
-	// });
 });
 
 app.get('/zipcode/:id', (req, res) => {
@@ -80,7 +69,7 @@ app.get('/search', (req, res) => {
 });
 
 app.post('/search', (req, res) => {
-	console.log(req.body);
+	// console.log(req.body);
 	var zipcode = req.body.zipcode;
 	var borough = req.body.borough;
 
@@ -105,8 +94,8 @@ app.post('/search', (req, res) => {
 	// Merge query strings. Exclude undefined query strings.
 	var urlQuery = querystring.stringify(_.merge(data));
 
-	console.log(urlQuery);
-	console.log(`${socrataUrl}?${socrataQuery + "&" + urlQuery}`);
+	// console.log(urlQuery);
+	// console.log(`${socrataUrl}?${socrataQuery + "&" + urlQuery}`);
 
 	if (zipcode.length > 0 && zipcode.length !== 5) {
 		return res.render("search.hbs", {errorMessage: `ERROR: Zip code should have 5 digits. You put in ${zipcode.length}`});
@@ -116,62 +105,23 @@ app.post('/search', (req, res) => {
 	// ADD CODE HERE
 	
 	request(`${socrataUrl}?${socrataQuery + "&" + urlQuery}`, (error, response, body) => {
-		if (JSON.parse(body).length === 0) {
-			return res.render("search.hbs", {
-				pageTitle: 'Search Results',
-				errorMessage: 'No results found.'});
-		}
 
 		if (!error && response.statusCode === 200) {
 			var searchResults = JSON.parse(body);
 
 			if (searchResults.length === 0) {
-				return res.render("search.hbs", {errorMessage: 'No results found.'});
+				return res.render("search.hbs", {
+					pageTitle: 'Search Results',
+					errorMessage: 'No results found.'});
 			} else {
 				res.render("search.hbs", {
 					pageTitle: 'Search Results',
 					body: searchResults});		
 			}	
 
-			// If user search includes restaurant name
-			// if (businessName.length > 0) {
-			// 	var searchResults = JSON.parse(body).filter((business) => {
-			// 		if (business.dba) {
-			// 			return business.dba.toLowerCase().includes(businessName);
-			// 		}
-			// 	});
-			// 	console.log(`${searchResults.length} search results`);
-
-			// 	if (searchResults.length === 0) {
-			// 		return res.render("search.hbs", {errorMessage: 'No results found.'});
-			// 	} else {
-			// 		res.render("search.hbs", {
-			// 			pageTitle: 'Search Results',
-			// 			body: searchResults});		
-			// 	}				
-			// } else {
-			// 	console.log(`${url}?${urlQuery}`);
-			// 	res.render("search.hbs", {
-			// 		body: JSON.parse(body),
-			// 		pageTitle: 'Search Results'
-			// 	});
-			// }
 		} else {
 			return error;
-		}		
-	});
-});
-
-// Route for experimenting with search by DBA name. DBA stands for "doing business as."
-app.get('/dba/:id', (req, res) => {
-	var businessName = req.params.id.toUpperCase();
-	console.log(`You searched for "${businessName}"`);
-
-	request(`${socrataUrl}?$where=DBA%20like%20%27%25${businessName}%25%27&$$app_token=${token}&boro=QUEENS&zipcode=11358`, (error, response, body) => {
-		var searchResults = JSON.parse(body);
-		console.log(`${socrataUrl}?$where=DBA%20like%20%27%25${businessName}%25%27&$$app_token=${token}&boro=QUEENS&zipcode=11358`);
-		console.log(`Your search returned ${searchResults.length} results`);
-		res.send(searchResults);
+		}
 	});
 });
 

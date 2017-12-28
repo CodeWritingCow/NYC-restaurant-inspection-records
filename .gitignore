@@ -20,6 +20,9 @@ $RECYCLE.BIN/
 # Dependency directories
 node_modules
 
+# Socrata API token
+token.js
+
 # =========================
 # Operating System Files
 # =========================

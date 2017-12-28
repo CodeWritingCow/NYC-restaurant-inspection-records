@@ -19,9 +19,10 @@ app.use(morgan('dev'));
 app.use(express.static(__dirname));
 
 const port = process.env.PORT || 8080;
-const token = process.env.TOKEN;
+const token = process.env.API_TOKEN || require('./token');
 
 const url = 'https://data.cityofnewyork.us/resource/43nn-pn8j.json';
+const socrataUrl = 'https://data.cityofnewyork.us/resource/9w7m-hzhe.json';
 
 // SET ROUTES
 // =======================================
@@ -165,24 +166,14 @@ app.post('/search', (req, res) => {
 	});
 });
 
+// Route for experimenting with search by DBA name. DBA stands for "doing business as."
 app.get('/dba/:id', (req, res) => {
-	var businessName = req.params.id.toLowerCase();
+	var businessName = req.params.id.toUpperCase();
+	console.log(`You searched for "${businessName}"`);
 
-	// If query string is added to url, console.log(business.dba) works
-	// But console.log(business.dba.toLowerCase()) throws an error
-	// TypeError: Cannot read property 'toLowerCase' of undefined
-	// Turns out at least one 'business' has 'undefined' for some reason
-	request(`${url}?boro=queens&zipcode=11358`, (error, response, body) => {
-		var searchResults = JSON.parse(body).filter((business) => {
-			console.log(`${business.dba} is type ${typeof business.dba}`);
-			// console.log(business.dba.toLowerCase());
-			
-			// Check if business.dba is defined. This fixes the above TypeError problem
-			if (business.dba) {
-				return business.dba.toLowerCase().includes(businessName);
-			}
-		});
-		console.log(searchResults.length);
+	request(`${socrataUrl}?$where=DBA%20like%20%27%25${businessName}%25%27&$$app_token=${token}&boro=QUEENS&zipcode=11358`, (error, response, body) => {
+		var searchResults = JSON.parse(body);
+		console.log(`Your search returned ${searchResults.length} results`);
 		res.send(searchResults);
 	});
 });

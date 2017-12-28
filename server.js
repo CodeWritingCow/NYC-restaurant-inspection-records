@@ -22,7 +22,7 @@ const port = process.env.PORT || 8080;
 const token = process.env.API_TOKEN || require('./token');
 
 const url = 'https://data.cityofnewyork.us/resource/43nn-pn8j.json';
-const socrataUrl = 'https://data.cityofnewyork.us/resource/9w7m-hzhe.json';
+const socrataUrl = 'https://data.cityofnewyork.us/resource/9w7m-hzhe.json'; // This URL allows Socrata SoQL functions as parameters
 
 // SET ROUTES
 // =======================================
@@ -42,26 +42,6 @@ app.get('/', (req, res) => {
 	// 		return error;
 	// 	}
 	// });
-});
-
-app.get('/chinese', (req, res) => {
-	request(`${url}?cuisine_description=chinese`, (error, response, body) =>{
-		if (!error && response.statusCode === 200) {
-			res.send(body);
-		} else {
-			return error;
-		}
-	});
-});
-
-app.get('/flushing', (req, res) => {
-	request(`${url}?zipcode=11358`, (error, response, body) => {
-		if (!error && response.statusCode === 200) {
-			res.send(body);
-		} else {
-			return error;
-		}
-	});
 });
 
 app.get('/zipcode/:id', (req, res) => {

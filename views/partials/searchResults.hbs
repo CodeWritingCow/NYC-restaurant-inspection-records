@@ -8,26 +8,23 @@
 		<span class="card-title">{{this.dba}}</span>
         <div class="divider"></div>
 		<ul style="list-style-type:none;">
-			{{#each this}}
+<!-- 			{{#each this}}
 			<li><strong>{{@key}}:</strong> {{this}}</li>
-			{{/each}}
-	    <!--	<li>{{@key}} {{this.cuisine_description}}</li>
-    		<li>{{this.record_date}}</li>
-    		<li>{{this.boro}}</li>
-    		<li>{{this.inspection_date}}</li>
-    		<li>{{this.building}}</li>
-    		<li>{{this.zipcode}}</li>
-    		<li>{{this.score}}</li>
-    		<li>{{this.phone}}</li>
-    		<li>{{this.street}}</li>
-    		<li>{{this.grade}}</li>
-    		<li>{{this.critical_flag}}</li>
-    		<li>{{this.camis}}</li>
-    		<li>{{this.action}}</li>
-    		<li>{{this.violation_code}}</li>
-    		<li>{{this.violation_description}}</li>
-    		<li>{{this.grade_date}}</li>
-    		<li>{{this.inspection_type}}</li> -->
+			{{/each}} -->
+	    	<li><span style="font-weight: bold;">Cuisine: </span>{{this.cuisine_description}}</li>
+    		<li><span style="font-weight: bold;">Record Date: </span>{{this.record_date}}</li>
+            <li><span style="font-weight: bold;">Inspection Date: </span>{{this.inspection_date}}</li>
+            <li><span style="font-weight: bold;">Address: </span>{{this.building}} {{this.street}}, {{this.boro}} {{this.zipcode}}</li>
+    		<li><span style="font-weight: bold;">Phone: </span>{{this.phone}}</li>
+            <li><span style="font-weight: bold;">Score: </span>{{this.score}}</li>
+    		<li><span style="font-weight: bold;">Grade: </span>{{this.grade}}</li>
+    		<li><span style="font-weight: bold;">Critical Flag: </span>{{this.critical_flag}}</li>
+    		<!-- <li><span style="font-weight: bold;">: </span>{{this.camis}}</li> -->
+    		<li><span style="font-weight: bold;">Action: </span>{{this.action}}</li>
+    		<li><span style="font-weight: bold;">Violation Code: </span>{{this.violation_code}}</li>
+    		<li><span style="font-weight: bold;">Violation Description: </span>{{this.violation_description}}</li>
+    		<li><span style="font-weight: bold;">Grade Date: </span>{{this.grade_date}}</li>
+    		<li><span style="font-weight: bold;">Inspection Type: </span>{{this.inspection_type}}</li> 
 		</ul>
                 </div>
             </div>

@@ -125,6 +125,13 @@ app.post('/search', (req, res) => {
 	});
 });
 
+app.use((req, res) => {
+	res.status(404);
+	res.render('404.hbs', {
+		pageTitle: 'Page Not Found'
+	});
+});
+
 // Start server
 app.listen(port, () => {
 	console.log(`App is running on http://localhost: ${port}`);

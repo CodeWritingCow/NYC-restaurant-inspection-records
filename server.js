@@ -116,7 +116,9 @@ app.post('/search', (req, res) => {
 			} else {
 				res.render("search.hbs", {
 					pageTitle: 'Search Results',
-					body: searchResults});		
+					body: searchResults,
+					numberResults: 'Your search returned ' + searchResults.length + ' results.'
+				});
 			}	
 
 		} else {

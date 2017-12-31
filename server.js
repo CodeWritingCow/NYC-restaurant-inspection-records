@@ -94,9 +94,6 @@ app.post('/search', (req, res) => {
 	// Merge query strings. Exclude undefined query strings.
 	var urlQuery = querystring.stringify(_.merge(data));
 
-	// console.log(urlQuery);
-	// console.log(`${socrataUrl}?${socrataQuery + "&" + urlQuery}`);
-
 	if (zipcode.length > 0 && zipcode.length !== 5) {
 		return res.render("search.hbs", {errorMessage: `ERROR: Zip code should have 5 digits. You put in ${zipcode.length}`});
 	}
@@ -122,7 +119,14 @@ app.post('/search', (req, res) => {
 			}	
 
 		} else {
-			return error;
+			// console.log('error:', error); // Print the error if one occurred
+			// console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+			// console.log('body:', body); // Print the HTML for the Google homepage.
+			res.status(response.statusCode);
+			res.render("error.hbs", {
+				pageTitle: 'Something went wrong!',
+				errorMessage: 'There seems to be an error. Let\'s go home and try something else.'
+			});
 		}
 	});
 });

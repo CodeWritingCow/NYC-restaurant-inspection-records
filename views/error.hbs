@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Error</title>
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+		<!--Import Google Icon Font-->    
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+			body {
+				display: flex;
+				min-height: 100vh;
+				flex-direction: column;
+			}
+
+			main {
+				flex: 1 0 auto;
+			}
+        </style>           
+    </head>
+    <body>
+    	{{> header}}
+    	<main class="parallax-container" style="padding: 30px;">
+    		<div class="parallax"><img src="/public/assets/img/making-waffles-cutting-them-into-pieces-picjumbo-com-1024x683.jpg" alt="Making and cutting waffles. Photo by picjumbo.com">
+    		</div>
+			    <h1 class="center">{{pageTitle}}</h1>
+	    		<div class="row center">
+				    <h5>{{errorMessage}}</h5>    			
+	    		</div>
+	    		<div class="row center">
+	    			<a href="/" class="btn-large waves-effect">GO HOME <i class="material-icons right">home</i></a>
+	    		</div>
+    	</main>
+    	{{> footer}}
+    </body>
+
+	<!-- Compiled and minified JavaScript -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script>
+		 $(document).ready(function() {
+		    $('select').material_select();
+		    $(".button-collapse").sideNav();
+		    $('.parallax').parallax();
+		  });
+    </script>
+</html>

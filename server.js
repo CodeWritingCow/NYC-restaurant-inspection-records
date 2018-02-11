@@ -69,9 +69,8 @@ app.get('/search', (req, res) => {
 });
 
 app.post('/search', (req, res) => {
-	// console.log(req.body);
-	var zipcode = req.body.zipcode;
-	var borough = req.body.borough;
+	var {zipcode} = req.body;
+	var {borough} = req.body;
 
 	var data = req.body;
 	var businessName = data.dba.toUpperCase();
@@ -114,14 +113,11 @@ app.post('/search', (req, res) => {
 				res.render("search.hbs", {
 					pageTitle: 'Search Results',
 					body: searchResults,
-					numberResults: 'Your search returned ' + searchResults.length + ' results.'
+					numberResults: `Your search returned ${searchResults.length} results.`
 				});
 			}	
 
 		} else {
-			// console.log('error:', error); // Print the error if one occurred
-			// console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-			// console.log('body:', body); // Print the HTML for the Google homepage.
 			res.status(response.statusCode);
 			res.render("error.hbs", {
 				pageTitle: 'Something went wrong!',

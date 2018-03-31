@@ -86,16 +86,16 @@ app.post('/search', (req, res) => {
 	delete data.dba;
 
 	// Remove zipcode query string if it's empty
-	if (data.zipcode.length === 0) {
+	if (data.zipcode === undefined || data.zipcode.length === 0) {
 		delete data.zipcode;
 	}
 
 	// Merge query strings. Exclude undefined query strings.
 	var urlQuery = querystring.stringify(_.merge(data));
 
-	if (zipcode.length > 0 && zipcode.length !== 5) {
-		return res.render("search.hbs", {errorMessage: `ERROR: Zip code should have 5 digits. You put in ${zipcode.length}`});
-	}
+	// if (zipcode.length > 0 && zipcode.length !== 5) {
+	// 	return res.render("search.hbs", {errorMessage: `ERROR: Zip code should have 5 digits. You put in ${zipcode.length}`});
+	// }
 
 	// if zipcode contains letters, return errorMessage
 	// ADD CODE HERE

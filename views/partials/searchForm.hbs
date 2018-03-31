@@ -2,11 +2,24 @@
 <form class="col s12" action="/search" method="POST">
 	<div class="row">
 		<div class="input-field col s12 m6">
+			<i class="material-icons prefix">restaurant</i>
 			<label for="dba">Business Name</label>
 			<input type="text" name="dba">
 		</div>
-
 		<div class="input-field col s12 m6">
+			<i class="material-icons prefix">location_city</i>
+			<select id="boro" name="boro">
+				<option value="" disabled selected>None</option>
+				<option value="BRONX">Bronx</option>
+				<option value="BROOKLYN">Brooklyn</option>
+				<option value="MANHATTAN">Manhattan</option>
+				<option value="QUEENS">Queens</option>
+				<option value="STATEN ISLAND">Staten Island</option>
+			</select>
+			<label>Borough</label>
+		</div>		
+
+<!-- 		<div class="input-field col s12 m6">
 			<select name="cuisine_description" id="cuisine_description">
 				<option value="" disabled selected>None</option>
 				<optgroup label="Fast Foods">
@@ -75,34 +88,22 @@
 				</optgroup>
 			</select>
 			<label>Cuisine Type</label>
-		</div>
+		</div> -->
 	</div>
 
-	<div class="row">
+<!-- 	<div class="row">
 		<div class="input-field col s12 m6">
 			<label for="zipcode">ZIP Code</label>
 			<input type="text" name="zipcode" pattern="[0-9]{5}" title="ZIP code must be a five-digit number">
 			
-	<!-- 		<label for="street">Street</label>
+			<label for="street">Street</label>
 			<input disabled type="text" name="street" placeholder="street address">
 
 			<label for="city">City</label>
-			<input disabled type="text" name="city" placeholder="city"> -->
+			<input disabled type="text" name="city" placeholder="city">
 		</div>
 
-		<div class="input-field col s12 m6">
-			<select id="boro" name="boro">
-				<option value="" disabled selected>None</option>
-				<option value="BRONX">Bronx</option>
-				<option value="BROOKLYN">Brooklyn</option>
-				<option value="MANHATTAN">Manhattan</option>
-				<option value="QUEENS">Queens</option>
-				<option value="STATEN ISLAND">Staten Island</option>
-			</select>
-			<label>Borough</label>
-		</div>
-
-	</div>
+	</div> -->
 
 <!-- 	<fieldset>
 		<label for="startDate">Start:</label>

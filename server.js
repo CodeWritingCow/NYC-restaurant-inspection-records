@@ -75,6 +75,12 @@ app.post('/search', (req, res) => {
 	var data = req.body;
 	var businessName = data.dba.toUpperCase();
 
+	// If businessName includes single quote mark, change it to double quote
+	// This prevents socrataQuery from throwing an error
+	if (_.includes(businessName, "'")) {
+		businessName = businessName.replace(/'/g, "''");
+	}
+
 	var socrataQuery = `$$app_token=${token}`;
 	// if data.dba contains a value, add socrataQuery to urlQuery
 

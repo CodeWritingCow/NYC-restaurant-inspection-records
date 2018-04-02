@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 
 app.get('/search', (req, res) => {
 	res.render('search.hbs', {
-		pageTitle: 'Search NYC Restaurant Inspections'
+		pageTitle: 'Advanced Search'
 	});	
 });
 
@@ -83,12 +83,12 @@ app.post('/search', (req, res) => {
 			var searchResults = JSON.parse(body);
 
 			if (searchResults.length === 0) {
-				return res.render("search.hbs", {
+				return res.render("results.hbs", {
 					pageTitle: 'Search Results',
 					numberResults: 'Your search returned no results.'
 				});
 			} else {
-				res.render("search.hbs", {
+				res.render("results.hbs", {
 					pageTitle: 'Search Results',
 					body: searchResults,
 					numberResults: `Your search returned ${searchResults.length} results.`

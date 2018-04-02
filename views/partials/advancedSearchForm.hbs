@@ -1,0 +1,121 @@
+<div class="row">
+<form class="col s12" action="/search" method="POST">
+	<div class="row">
+		<div class="input-field col s12 m8">
+			<i class="material-icons prefix">restaurant</i>
+			<label for="dba">Restaurant Name</label>
+			<input type="text" name="dba">
+		</div>
+		<div class="input-field col s12 m4">
+			<i class="material-icons prefix">location_city</i>
+			<select id="boro" name="boro">
+				<option value="" disabled selected>None</option>
+				<option value="BRONX">Bronx</option>
+				<option value="BROOKLYN">Brooklyn</option>
+				<option value="MANHATTAN">Manhattan</option>
+				<option value="QUEENS">Queens</option>
+				<option value="STATEN ISLAND">Staten Island</option>
+			</select>
+			<label>Borough</label>
+		</div>		
+
+		<div class="input-field col s12 m6">
+			<select name="cuisine_description" id="cuisine_description">
+				<option value="" disabled selected>None</option>
+				<optgroup label="Fast Foods">
+					<option value="Chicken">Chicken</option>
+					<option value="Donuts">Donuts</option>
+					<option value="Hamburgers">Hamburgers</option>					
+					<option value="Pizza">Pizza</option>
+					<option value="Pizza/Italian">Pizza/Italian</option>
+					<option value="Sandwiches">Sandwiches</option>
+					<option value="Sandwiches/Salads/Mixed Buffet">Sandwiches/Salads/Mixed Buffet</option>
+				</optgroup>
+				<optgroup label="American">
+					<option value="American">American</option>
+					<option value="Caribbean">Caribbean</option>
+					<option value="Seafood">Seafood</option>
+					<option value="Steak">Steak</option>
+					<option value="Soul Food">Soul Food</option>					
+				</optgroup>
+				<optgroup label="Asian">
+					<option value="Asian">Asian</option>
+					<option value="Chinese">Chinese</option>
+					<option value="Chinese/Japanese">Chinese/Japanese</option>
+					<option value="Japanese">Japanese</option>
+					<option value="Filipino">Filipino</option>										
+					<option value="Indian">Indian</option>
+					<option value="Thai">Thai</option>
+					<option value="Vietnamese/Cambodian/Malaysia">Vietnamese/Cambodian/Malaysia</option>
+				</optgroup>
+				<optgroup label="European">
+					<option value="Eastern European">Eastern European</option>
+					<option value="Greek">Greek</option>
+					<option value="German">German</option>
+					<option value="Italian">Italian</option>
+					<option value="Jewish/Kosher">Jewish/Kosher</option>
+					<option value="Mediterranean">Mediterranean</option>				
+					<option value="Polish">Polish</option>
+					<option value="Russian">Russian</option>
+				</optgroup>
+				<optgroup label="Health food">
+					<option value="Fruits/Vegetables">Fruits/Vegetables</option>
+					<option value="Salads">Salads</option>
+					<option value="Vegetarian">Vegetarian</option>
+				</optgroup>
+				<optgroup label="Latin American">
+					<option value="Mexican">Mexican</option>
+					<option value="Tex-Mex">Tex-Mex</option>
+					<option value="Latin (Cuban, Dominican, Puerto Rican, South & Central American)">Latin (Cuban, Dominican, Puerto Rican, South & Central American)</option>
+					<option value="Peruvian">Peruvian</option>
+					<option value="Spanish">Spanish</option>
+				</optgroup>
+				<optgroup label="African">
+					<option value="African">African</option>
+					<option value="Ethiopian">Ethiopian</option>
+				</optgroup>
+				<optgroup label="Bakeries, Cafes and Deli">
+					<option value="Bagels/Pretzels">Bagels/Pretzels</option>
+					<option value="Bakery">Bakery</option>
+					<option value="CafÃ©/Coffee/Tea">Cafe</option>
+					<option value="Delicatessen">Delicatessen</option>
+					<option value="Ice Cream, Gelato, Yogurt, Ices">Ice Cream, Gelato, Yogurt, Ices</option>
+					<option value="Pancakes/Waffles">Pancakes/Waffles</option>
+				</optgroup>
+				<optgroup label="Other">
+					<option value="Armenian">Armenian</option>
+					<option value="Other">Other</option>
+				</optgroup>
+			</select>
+			<label>Cuisine Type</label>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="input-field col s12 m6">
+			<label for="zipcode">ZIP Code</label>
+			<input type="text" name="zipcode" pattern="[0-9]{5}" title="ZIP code must be a five-digit number">
+			
+			<label for="street">Street</label>
+			<input disabled type="text" name="street" placeholder="street address">
+
+			<label for="city">City</label>
+			<input disabled type="text" name="city" placeholder="city">
+		</div>
+
+	</div>
+
+<!-- 	<fieldset>
+		<label for="startDate">Start:</label>
+		<input disabled type="date" name="startDate">
+		<label for="endDate">End:</label>
+		<input disabled type="date" name="endDate">
+	</fieldset> -->
+
+	<div class="row center">
+		<button class="btn-large waves-effect waves-light center-align" type="submit">Search
+			<i class="material-icons right">search</i>
+		</button>
+	</div>
+</form>
+</div>

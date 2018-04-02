@@ -19,8 +19,7 @@
 			    <h1 style="font-weight: bold;">{{pageTitle}}</h1>
 	    	</div>    	
 	    	<div class="container">
-		    	{{> searchForm}}
-		    	{{> searchResults}}
+		    	{{> advancedSearchForm}}
 	    	</div>
     	</main>
     	{{> footer}}
@@ -33,6 +32,60 @@
 		 $(document).ready(function() {
 		    $('select').material_select();
 		    $(".button-collapse").sideNav();
+			// $('input.autocomplete').autocomplete({
+			//     data: {
+			//       "African": null,
+			//       "American": null,
+			//       "Armenian": null,			      
+			//       "Asian": null,
+			//       "Bagels/Pretzels": null,
+			//       "Bakery": null,
+			//       "CafÃ©/Coffee/Tea": null,
+			//       "Caribbean": null,
+			//       "Chicken": null,
+			//       "Chinese": null,
+			//       "Chinese/Japanese": null,
+			//       "Delicatessen": null,			    	
+			//       "Donuts": null,
+			//       "Eastern European": null,
+			//       "Ethiopian": null,
+			//       "Filipino": null,
+			//       "Fruits/Vegetables": null,
+			//       "German": null,
+			//       "Greek": null,
+			//       "Hamburgers": null,
+			//       "Ice Cream, Gelato, Yogurt, Ices": null,
+			//       "Indian": null,
+			//       "Italian": null,
+			//       "Japanese": null,
+			//       "Jewish/Kosher": null,
+			//       "Korean": null,
+			//       "Latin (Cuban, Dominican, Puerto Rican, South & Central American)": null,
+			//       "Mediterranean": null,
+			//       "Mexican": null,
+			//       "Other": null,
+			//       "Pancakes/Waffles": null,
+			//       "Peruvian": null,
+			//       "Pizza": null,
+			//       "Polish": null,
+			//       "Russian": null,
+			//       "Salads": null,
+			//       "Sandwiches": null,
+			//       "Sandwiches/Salads/Mixed Buffet": null,
+			//       "Seafood": null,
+			//       "Soul Food": null,
+			//       "Spanish": null,
+			//       "Tex-Mex": null,
+			//       "Thai": null,
+			//       "Vegetarian": null,
+			//       "Vietnamese/Cambodian/Malaysia": null
+			//     },
+			//     limit: 5, // The max amount of results that can be shown at once. Default: Infinity.
+			//     onAutocomplete: function(val) {
+			//       // Callback function when value is autcompleted.
+			//     },
+			//     minLength: 2, // The minimum length of the input for the autocomplete to start. Default: 1.
+			//   });		    
 		  });        	
-    </script>    
+    </script>
 </html>

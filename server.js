@@ -29,7 +29,7 @@ const socrataUrl = 'https://data.cityofnewyork.us/resource/9w7m-hzhe.json'; // T
 
 app.get('/', (req, res) => {
 	res.render('home.hbs', {
-		pageTitle: 'NYC Restaurant Inspector'
+		pageTitle: 'Is your food safe?'
 	});
 });
 

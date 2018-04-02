@@ -33,35 +33,6 @@ app.get('/', (req, res) => {
 	});
 });
 
-app.get('/zipcode/:id', (req, res) => {
-	request(`${url}?zipcode=${req.params.id}`, (error, response, body) => {
-		if (req.params.id.length !== 5) {
-			return res.send(`ERROR: Zip code should have 5 digits. You put in ${req.params.id.length}`);
-		}
-		if (JSON.parse(body).length === 0) {
-			return res.send('Nothing was found. Please make sure you are using a New York City ZIP code.');
-		}
-		if (!error && response.statusCode === 200) {
-			res.send(body);
-		} else {
-			return error;
-		}
-	});
-});
-
-app.get('/borough/:id', (req, res) => {
-	request(`${url}?boro=${req.params.id.toUpperCase()}`, (error, response, body) => {
-		if (JSON.parse(body).length === 0) {
-			return res.send('Nothing was found. Please make sure you are using one of five borough names: "Bronx", "Manhattan", "Queens", "Brooklyn" or "Staten Island".');
-		}		
-		if (!error && response.statusCode === 200) {
-			res.send(body);
-		} else {
-			return error;
-		}		
-	});
-});
-
 app.get('/search', (req, res) => {
 	res.render('search.hbs', {
 		pageTitle: 'Search NYC Restaurant Inspections'
@@ -114,7 +85,8 @@ app.post('/search', (req, res) => {
 			if (searchResults.length === 0) {
 				return res.render("search.hbs", {
 					pageTitle: 'Search Results',
-					errorMessage: 'No results found.'});
+					numberResults: 'Your search returned no results.'
+				});
 			} else {
 				res.render("search.hbs", {
 					pageTitle: 'Search Results',

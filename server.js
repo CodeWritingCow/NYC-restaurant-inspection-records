@@ -105,6 +105,12 @@ app.post('/search', (req, res) => {
 	});
 });
 
+app.get('/report-violations', (req, res) => {
+	res.render('reportViolations.hbs', {
+		pageTitle: 'Report Violations'
+	});
+});
+
 app.use((req, res) => {
 	res.status(404);
 	res.render('404.hbs', {

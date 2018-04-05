@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Report Violations</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/public/assets/css/main.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    {{> header}}
+    <div class="parallax-container hide-on-small-only">
+        <div class="parallax">
+            <img src="/public/assets/img/pan-with-olive-oil-ready-to-cooking-picjumbo-com 1024 x683.jpg" alt="Pan with olive oil ready to cooking. Photo by picjumbo.com">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+        <h3 class="center" style="font-weight: bold;">{{pageTitle}}</h3>
+            <!--   Icon Section   -->
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center red-text text-lighten-2">
+                            <i class="material-icons medium">local_hospital</i>
+                        </h2>
+                        <h5 class="center">Restaurants</h5>
+    
+                        <p class="light">You can report unsanitary conditions at restaurants in New York City through <a href="https://www1.nyc.gov/apps/311universalintake/form.htm?serviceName=DOHMH+Food+Establishment" target="_blank">nyc.gov.</a> For more information, visit <a href="http://www1.nyc.gov/nyc-resources/service/1723/food-safety-or-poisoning-complaint" target="_blank">"Food Safety or Poisoning Complaint."</a></p>
+                    </div>
+                </div>
+    
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center red-text text-lighten-2">
+                            <i class="material-icons medium">report_problem</i>
+                        </h2>
+                        <h5 class="center">Food Carts</h5>
+    
+                        <p class="light">To report unsanitary or unlicensed food carts, use <a href="https://www1.nyc.gov/apps/311universalintake/form.htm?serviceName=DOHMH+Mobile+Food+Vendor" target="_blank">this form.</a></p>
+                    </div>
+                </div>
+    
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center red-text text-lighten-2">
+                            <i class="material-icons medium">mood_bad</i>
+                        </h2>
+                        <h5 class="center">Food Poisoning</h5>
+    
+                        <p class="light">
+                            Report food poisoning involving <a href="https://www1.nyc.gov/apps/311universalintake/form.htm?serviceName=DOHMH+Food+Poisoning+1+or+2" target="_blank">one or two people</a>, or <a href="https://www1.nyc.gov/apps/311universalintake/form.htm?serviceName=DOHMH+Food+Poisoning+3+or+More" target="_blank">three or more people.</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        <br>
+        <br>
+    </div>
+    {{> footer}}
+</body>
+
+<!-- Compiled and minified JavaScript -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('select').material_select();
+        $(".button-collapse").sideNav();
+        $('.parallax').parallax();
+    });
+</script>
+
+</html>

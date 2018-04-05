@@ -13,7 +13,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>            
     </head>
     <body>
+
     	{{> header}}
+
+			<div class="parallax-container hide-on-small-only center valign-wrapper">
+				<div class="parallax">
+					<img src="/public/assets/img/michael-browning-14090-unsplash-1024x683.jpg" alt="Men working in kitchen. Photo by Michael Browning on Unsplash.">
+				</div>
+				{{!-- <div class="container">
+					<h1 class="red-text text-lighten-2 blue-grey lighten-5 card" style="font-weight: bold; padding:10px;">NYC Food Safety</h1>
+				</div> --}}
+			</div>
+
     	<div class="blue-grey lighten-5">
 	    	<main class="container" style="padding: 30px;">
 			    <h3 class="red-text text-lighten-2" style="font-weight: bold;">{{pageTitle}}</h3>
@@ -70,6 +81,7 @@
 		 $(document).ready(function() {
 		    $('select').material_select();
 		    $(".button-collapse").sideNav();
+				$('.parallax').parallax();
 		  });        	
     </script>
 </html>

@@ -14,6 +14,13 @@
     </head>
     <body>
     	{{> header}}
+
+		<div class="parallax-container hide-on-small-only">
+			<div class="parallax">
+				<img src="/public/assets/img/michael-browning-14092-unsplash-1024x683.jpg" alt="Person, table, night and mercantile establishment. Photo by Michael Browning on Unsplash.">
+			</div>
+		</div>
+
     	<div class="blue-grey lighten-5">
 	    	<main class="container" style="padding: 35px; margin-bottom: 50px;">
 			    <h3 class="red-text text-lighten-2" style="font-weight: bold;">{{pageTitle}}</h3>
@@ -32,6 +39,7 @@
 		 $(document).ready(function() {
 		    $('select').material_select();
 		    $(".button-collapse").sideNav();
+			$('.parallax').parallax();
 			// $('input.autocomplete').autocomplete({
 			//     data: {
 			//       "African": null,

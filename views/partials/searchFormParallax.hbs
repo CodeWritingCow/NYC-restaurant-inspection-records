@@ -1,17 +1,17 @@
 <div class="container">
     <div class="row">
-        <form class="col s12 card" style="border:20px solid teal;">
+        <form class="col s12 card" action="/search" method="POST" style="border:20px solid teal;">
             <h4 class="teal-text text-lighten-2 hide-on-med-and-down" style="font-weight: bold;">Is Your Food Safe?</h4>
             <h5>Find a restaurant's inspection records</h5>
             <div class="row">
                 <div class="input-field col s6">
                     {{!-- <i class="material-icons prefix">restaurant</i> --}}
-                    <input id="name" type="text" class="validate" placeholder="Restaurant name"> {{!--
+                    <input type="text" name="dba" class="validate" placeholder="Restaurant name"> {{!--
                     <label for="name">Name</label> --}}
                 </div>
                 <div class="input-field col s3">
                     {{!-- <i class="material-icons prefix">location_city</i> --}}
-                    <select id="boro" name="boro">
+                    <select name="boro">
                         <option value="BRONX">Bronx</option>
                         <option value="BROOKLYN">Brooklyn</option>
                         <option value="MANHATTAN">Manhattan</option>
@@ -20,7 +20,7 @@
                     </select>
                 </div>
                 <div class="input-field col s3">
-                    <button class="btn-large waves-effect waves-light" type="submit" name="action">SEARCH
+                    <button class="btn-large waves-effect waves-light" type="submit">SEARCH
                     </button>
                 </div>
             </div>

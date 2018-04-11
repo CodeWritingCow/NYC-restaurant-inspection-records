@@ -18,7 +18,7 @@
 
 			<div class="parallax-container hide-on-small-only valign-wrapper">
 				<div class="parallax">
-					<img src="/public/assets/img/michael-browning-14090-unsplash-1024x683.jpg" alt="Men working in kitchen. Photo by Michael Browning on Unsplash." class="black-white">
+					<img id="parallaxImg" src="/public/assets/img/michael-browning-14090-unsplash-1024x683.jpg" alt="Men working in kitchen. Photo by Michael Browning on Unsplash.">
 				</div>
 				{{> searchFormParallax}}
 			</div>
@@ -80,6 +80,18 @@
 		    $('select').material_select();
 		    $(".button-collapse").sideNav();
 				$('.parallax').parallax();
-		  });        	
+		  });
+			const imgCount = 6;
+			const dir = '/public/assets/img/';
+			const randomCount = Math.round(Math.random() * (imgCount - 1)) + 1;
+			const images = new Array;
+						images[1] = "michael-browning-14090-unsplash-1024x683.jpg";
+						images[2] = "michael-browning-14092-unsplash-1024x683.jpg";
+						images[3] = "joanna-boj-17158-unsplash-1024x683.jpg";
+						images[4] = "making-waffles-cutting-them-into-pieces-picjumbo-com-1024x683.jpg";
+						images[5] = "clem-onojeghuo-97089-unsplash-1024x683.jpg";
+						images[6] = "woman-holding-an-ice-cream-picjumbo-com-1024x683.jpg";
+			const randomImg = dir + images[randomCount]
+			document.getElementById("parallaxImg").src=randomImg;
     </script>
 </html>

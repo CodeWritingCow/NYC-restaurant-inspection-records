@@ -19,6 +19,7 @@
 			    <h3 style="font-weight: bold;">{{pageTitle}}</h3>
 	    	</div>    	
 	    	<div class="container">
+				<div id="pagination"></div>
 		    	{{> searchResults}}
 	    	</div>
     	</main>
@@ -28,10 +29,21 @@
 	<!-- Compiled and minified JavaScript -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script src="/public/assets/javascript/materialize-pagination.js"></script>
 	<script>
 		 $(document).ready(function() {
 		    $('select').material_select();
 		    $(".button-collapse").sideNav();
-		  });        	
+			$('#pagination').materializePagination({
+				// align: 'left',
+				lastPage: 10,
+				firstPage: 1,
+				urlParameter: 'page',
+				useUrlParameter: true,
+				onClickCallback: function (requestedPage) {
+					console.log('Requested page is ' + requestedPage);
+				}
+			}); 			
+		  }); 	
     </script>    
 </html>

@@ -77,6 +77,14 @@ app.post('/search', (req, res) => {
 	// if zipcode contains letters, return errorMessage
 	// ADD CODE HERE
 	
+	// PSEUDO-CODE
+	// Return total number of entries matching user's query
+	// Return first 10 results only
+	// When user presses "previous" or "next," return previous or next 10 results
+		// Limit returned results to 10 entries
+	// When user presses pagination number, return corresponding 10 results
+		// Limit returned results to 10 entries
+		
 	request(`${socrataUrl}?${socrataQuery + "&" + urlQuery}`, (error, response, body) => {
 
 		if (!error && response.statusCode === 200) {

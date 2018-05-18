@@ -42,7 +42,7 @@ app.get('/search', (req, res) => {
 app.post('/search', (req, res) => {
 	var {zipcode} = req.body;
 	var {borough} = req.body;
-
+	
 	var data = req.body;
 	var businessName = data.dba.toUpperCase();
 
@@ -69,7 +69,7 @@ app.post('/search', (req, res) => {
 
 	// Merge query strings. Exclude undefined query strings.
 	var urlQuery = querystring.stringify(_.merge(data));
-
+	
 	// if (zipcode.length > 0 && zipcode.length !== 5) {
 	// 	return res.render("search.hbs", {errorMessage: `ERROR: Zip code should have 5 digits. You put in ${zipcode.length}`});
 	// }
@@ -79,13 +79,17 @@ app.post('/search', (req, res) => {
 	
 	// PSEUDO-CODE
 	// Return total number of entries matching user's query
-	// Return first 10 results only
+
+	// Return first 10 results only ... Limit results to 10 entries
+	// &$limit=10
+
+	// Preserve existing query string
+
 	// When user presses "previous" or "next," return previous or next 10 results
-		// Limit returned results to 10 entries
 	// When user presses pagination number, return corresponding 10 results
-		// Limit returned results to 10 entries
-		
-	request(`${socrataUrl}?${socrataQuery + "&" + urlQuery}`, (error, response, body) => {
+	// &$offset=PAGE_NUMBER
+
+	request(`${socrataUrl}?${socrataQuery + "&" + urlQuery + "&$limit=10&$offset=0&$order=:id"}`, (error, response, body) => {
 
 		if (!error && response.statusCode === 200) {
 			var searchResults = JSON.parse(body);

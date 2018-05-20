@@ -103,7 +103,7 @@ app.post('/search', (req, res) => {
 					numberResults: `Your search returned ${searchResults.length} results.`,
 					pagination: {
 						page: 1, // TODO: Change to pageNumber
-						pageCount: 10 // TODO: Change to totalResults divided by resultsLimit
+						pageCount: 10 // TODO: Change to (totalResults or searchResults.length) divided by resultsLimit 
 					}
 				});
 			}	

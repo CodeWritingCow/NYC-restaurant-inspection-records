@@ -83,10 +83,10 @@ app.post('/search', (req, res) => {
 	console.log(savedQuery);
 
 	// Set page number ... Hard code for now
-	var pageNumber = "&$offset=0"; // 
-	// Final code should look like this: var pageNumber = `&$offset=${PAGE_NUMBER}`;
+	var pageNumber = 0;
+	var pageOffset = `&$offset=${pageNumber}`;
 
-	request(`${socrataUrl}?${socrataQuery + "&" + urlQuery + resultsLimit + pageNumber + "&$order=:id"}`, (error, response, body) => {
+	request(`${socrataUrl}?${socrataQuery + "&" + urlQuery + resultsLimit + pageOffset + "&$order=:id"}`, (error, response, body) => {
 
 		if (!error && response.statusCode === 200) {
 			var searchResults = JSON.parse(body);
@@ -102,7 +102,7 @@ app.post('/search', (req, res) => {
 					body: searchResults,
 					numberResults: `Your search returned ${searchResults.length} results.`,
 					pagination: {
-						page: 1, // TODO: Change to pageNumber
+						page: pageNumber + 1,
 						pageCount: 10 // TODO: Change to (totalResults or searchResults.length) divided by resultsLimit 
 					}
 				});

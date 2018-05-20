@@ -21,7 +21,6 @@ app.use(express.static(__dirname));
 const port = process.env.PORT || 8080;
 const token = process.env.API_TOKEN || require('./token');
 
-const url = 'https://data.cityofnewyork.us/resource/43nn-pn8j.json';
 const socrataUrl = 'https://data.cityofnewyork.us/resource/9w7m-hzhe.json'; // This URL allows Socrata SoQL functions as parameters
 
 // SET ROUTES
@@ -40,14 +39,13 @@ app.get('/search', (req, res) => {
 });
 
 app.post('/search', (req, res) => {
-	// console.log(req.body);
 	var {zipcode} = req.body;
 	var {borough} = req.body;
 	
 	var data = req.body;
 	var businessName = data.dba.toUpperCase();
 
-	// If businessName includes single quote mark, change it to double quote
+	// If businessName includes single quote mark, replace mark with double quote
 	// This prevents socrataQuery from throwing an error
 	if (_.includes(businessName, "'")) {
 		businessName = businessName.replace(/'/g, "''");
@@ -71,13 +69,6 @@ app.post('/search', (req, res) => {
 	// Merge query strings. Exclude undefined query strings.
 	var urlQuery = querystring.stringify(_.merge(data));
 	
-	// if (zipcode.length > 0 && zipcode.length !== 5) {
-	// 	return res.render("search.hbs", {errorMessage: `ERROR: Zip code should have 5 digits. You put in ${zipcode.length}`});
-	// }
-
-	// if zipcode contains letters, return errorMessage
-	// ADD CODE HERE
-	
 	// Return total number of entries matching user's query
 
 	// Limit results to 10 health reports per page
@@ -88,9 +79,9 @@ app.post('/search', (req, res) => {
 	console.log("savedQuery is: ");
 	console.log(savedQuery);
 
-	// Set page number
-	// var pageNumber = `&$offset=${PAGE_NUMBER}`;
-	var pageNumber = "&$offset=0"; // Hard code for now
+	// Set page number ... Hard code for now
+	var pageNumber = "&$offset=0"; // 
+	// Final code should look like this: var pageNumber = `&$offset=${PAGE_NUMBER}`;
 
 	request(`${socrataUrl}?${socrataQuery + "&" + urlQuery + resultsLimit + pageNumber + "&$order=:id"}`, (error, response, body) => {
 
@@ -136,5 +127,5 @@ app.use((req, res) => {
 // Start server
 app.listen(port, () => {
 	console.log(`App is running on http://localhost: ${port}`);
-	console.log(`DOHMH New York City Restaurant Inspection Results: ${url}`);
+	console.log(`DOHMH New York City Restaurant Inspection Results: ${socrataUrl}`);
 });

@@ -40,6 +40,7 @@ app.get('/search', (req, res) => {
 });
 
 app.post('/search', (req, res) => {
+	// console.log(req.body);
 	var {zipcode} = req.body;
 	var {borough} = req.body;
 	
@@ -77,19 +78,21 @@ app.post('/search', (req, res) => {
 	// if zipcode contains letters, return errorMessage
 	// ADD CODE HERE
 	
-	// PSEUDO-CODE
 	// Return total number of entries matching user's query
 
-	// Return first 10 results only ... Limit results to 10 entries
-	// &$limit=10
+	// Limit results to 10 health reports per page
+	var resultsLimit = "&$limit=10";
 
 	// Preserve existing query string
+	var savedQuery = req.body;
+	console.log("savedQuery is: ");
+	console.log(savedQuery);
 
-	// When user presses "previous" or "next," return previous or next 10 results
-	// When user presses pagination number, return corresponding 10 results
-	// &$offset=PAGE_NUMBER
+	// Set page number
+	// var pageNumber = `&$offset=${PAGE_NUMBER}`;
+	var pageNumber = "&$offset=0"; // Hard code for now
 
-	request(`${socrataUrl}?${socrataQuery + "&" + urlQuery + "&$limit=10&$offset=0&$order=:id"}`, (error, response, body) => {
+	request(`${socrataUrl}?${socrataQuery + "&" + urlQuery + resultsLimit + pageNumber + "&$order=:id"}`, (error, response, body) => {
 
 		if (!error && response.statusCode === 200) {
 			var searchResults = JSON.parse(body);

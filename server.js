@@ -1,6 +1,7 @@
 const express 		= require('express');
 const app 			= express();
-const hbs			= require('hbs');
+const hbs 			= require('hbs'); // Handlebars template engine
+const paginate		= require('handlebars-paginate'); // pagination helper for Handlebars
 const morgan 		= require('morgan'); // morgan is a HTTP request logger middleware
 const request 		= require('request'); // request makes HTTP calls
 const bodyParser 	= require('body-parser'); // adds body object to request so app can access POST parameters
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
+hbs.registerHelper('paginate', paginate);
 
 // log all HTTP requests in the console
 app.use(morgan('dev'));
@@ -70,6 +72,7 @@ app.post('/search', (req, res) => {
 	var urlQuery = querystring.stringify(_.merge(data));
 	
 	// Return total number of entries matching user's query
+	// var totalResults;
 
 	// Limit results to 10 health reports per page
 	var resultsLimit = "&$limit=10";
@@ -97,7 +100,11 @@ app.post('/search', (req, res) => {
 				res.render("results.hbs", {
 					pageTitle: 'Search Results',
 					body: searchResults,
-					numberResults: `Your search returned ${searchResults.length} results.`
+					numberResults: `Your search returned ${searchResults.length} results.`,
+					pagination: {
+						page: 1, // TODO: Change to pageNumber
+						pageCount: 10 // TODO: Change to totalResults divided by resultsLimit
+					}
 				});
 			}	
 

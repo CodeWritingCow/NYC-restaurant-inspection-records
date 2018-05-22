@@ -75,7 +75,7 @@ app.post('/search', (req, res) => {
 	// var totalResults;
 
 	// Limit results to 10 health reports per page
-	var resultsLimit = "&$limit=10";
+	// var resultsLimit = "&$limit=10";
 
 	// Preserve existing query string
 	var savedQuery = req.body;
@@ -86,7 +86,8 @@ app.post('/search', (req, res) => {
 	var pageNumber = 0;
 	var pageOffset = `&$offset=${pageNumber}`;
 
-	request(`${socrataUrl}?${socrataQuery + "&" + urlQuery + resultsLimit + pageOffset + "&$order=:id"}`, (error, response, body) => {
+	// request(`${socrataUrl}?${socrataQuery + "&" + urlQuery + resultsLimit + pageOffset + "&$order=:id"}`, (error, response, body) => {
+	request(`${socrataUrl}?${socrataQuery + "&" + urlQuery + pageOffset + "&$order=:id"}`, (error, response, body) => {
 
 		if (!error && response.statusCode === 200) {
 			var searchResults = JSON.parse(body);
@@ -103,7 +104,7 @@ app.post('/search', (req, res) => {
 					numberResults: `Your search returned ${searchResults.length} results.`,
 					pagination: {
 						page: pageNumber + 1,
-						pageCount: 10 // TODO: Change to (totalResults or searchResults.length) divided by resultsLimit 
+						pageCount: Math.ceil(searchResults.length / 10) // TODO: Change to (totalResults or searchResults.length) divided by resultsLimit 
 					}
 				});
 			}	

@@ -21,6 +21,7 @@
 	    	<div class="container">
 		    	{{> searchResults}}
 
+				{{#if pagination}}
 				<div class="pagination pagination-centered">
 					<ul>
 						{{#paginate pagination type="first"}}
@@ -45,7 +46,7 @@
 						</li>
 						{{/paginate}}
 					</ul>
-				</div>
+				</div>{{/if}}
 	    	</div>
     	</main>
     	{{> footer}}

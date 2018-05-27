@@ -54,8 +54,8 @@ app.post('/search', (req, res) => {
 	}
 
 	var socrataQuery = `$$app_token=${token}`;
-	// if data.dba contains a value, add socrataQuery to urlQuery
 
+	// if data.dba contains a value, add socrataQuery to urlQuery
 	if (data.dba.length > 0) {
 		socrataQuery += `&$where=DBA%20like%20%27%25${businessName}%25%27`;
 	}
@@ -105,7 +105,9 @@ app.post('/search', (req, res) => {
 					pagination: {
 						page: pageNumber + 1,
 						pageCount: Math.ceil(searchResults.length / 10) // TODO: Change to (totalResults or searchResults.length) divided by resultsLimit 
-					}
+					},
+					urlQuery: urlQuery,
+					businessName: businessName
 				});
 			}	
 

@@ -26,11 +26,11 @@
 					<ul>
 						{{#paginate pagination type="first"}}
 						<li {{#if disabled}}class="disabled" {{else}}class="waves-effect" {{/if}}>
-							<a href="?page={{n}}">First</a>
+							<a href="?page={{n}}{{#if ../urlQuery}}&{{../businessName}}&{{../urlQuery}}{{/if}}">First</a>
 						</li>
 						{{/paginate}} {{#paginate pagination type="previous"}}
 						<li {{#if disabled}}class="disabled" {{else}}class="waves-effect" {{/if}}>
-							<a href="?page={{n}}">Prev</a>
+							<a href="?page={{n}}{{#if ../urlQuery}}&{{../businessName}}&{{../urlQuery}}{{/if}}">Prev</a>
 						</li>
 						{{/paginate}} {{#paginate pagination type="middle" limit="7"}}
 						<li {{#if active}}class="active" {{else}}class="waves-effect" {{/if}}>
@@ -38,11 +38,11 @@
 						</li>
 						{{/paginate}} {{#paginate pagination type="next"}}
 						<li {{#if disabled}}class="disabled" {{else}}class="waves-effect" {{/if}}>
-							<a href="?page={{n}}">Next</a>
+							<a href="?page={{n}}{{#if ../urlQuery}}&{{../businessName}}&{{../urlQuery}}{{/if}}">Next</a>
 						</li>
 						{{/paginate}} {{#paginate pagination type="last"}}
 						<li {{#if disabled}}class="disabled" {{else}}class="waves-effect" {{/if}}>
-							<a href="?page={{n}}">Last</a>
+							<a href="?page={{n}}{{#if ../urlQuery}}&{{../businessName}}&{{../urlQuery}}{{/if}}">Last</a>
 						</li>
 						{{/paginate}}
 					</ul>

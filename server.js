@@ -15,9 +15,7 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 hbs.registerHelper('paginate', paginate);
 
-// log all HTTP requests in the console
-app.use(morgan('dev'));
-
+app.use(morgan('dev')); // log all HTTP requests in the console
 app.use(express.static(__dirname));
 
 const port = process.env.PORT || 8080;
@@ -29,15 +27,11 @@ const socrataUrl = 'https://data.cityofnewyork.us/resource/9w7m-hzhe.json'; // T
 // =======================================
 
 app.get('/', (req, res) => {
-	res.render('home.hbs', {
-		pageTitle: 'Restaurant Inspection Records'
-	});
+	res.render('home.hbs', { pageTitle: 'Restaurant Inspection Records' });
 });
 
 app.get('/search', (req, res) => {
-	res.render('search.hbs', {
-		pageTitle: 'Advanced Search'
-	});	
+	res.render('search.hbs', { pageTitle: 'Advanced Search' });	
 });
 
 app.post('/search', (req, res) => {
@@ -45,11 +39,9 @@ app.post('/search', (req, res) => {
 	var data = req.body;
 	var businessName = data.dba.toUpperCase();
 
-	// If businessName includes single quote mark, replace mark with double quote
+	// Replace any single quote mark in businessName with double quote
 	// This prevents socrataQuery from throwing an error
-	if (_.includes(businessName, "'")) {
-		businessName = businessName.replace(/'/g, "''");
-	}
+	if (_.includes(businessName, "'")) { businessName = businessName.replace(/'/g, "''"); }
 
 	var socrataQuery = `$$app_token=${token}`;
 
@@ -75,8 +67,7 @@ app.post('/search', (req, res) => {
 
 	// Preserve existing query string
 	var savedQuery = req.body;
-	console.log("savedQuery is: ");
-	console.log(savedQuery);
+	console.log(`savedQuery is: + ${JSON.stringify(savedQuery)}`);
 
 	// Set page number ... Hard code for now
 	var pageNumber = 0;
@@ -118,16 +109,12 @@ app.post('/search', (req, res) => {
 });
 
 app.get('/report-violations', (req, res) => {
-	res.render('reportViolations.hbs', {
-		pageTitle: 'Report Violations'
-	});
+	res.render('reportViolations.hbs', { pageTitle: 'Report Violations' });
 });
 
 app.use((req, res) => {
 	res.status(404);
-	res.render('404.hbs', {
-		pageTitle: 'Page Not Found'
-	});
+	res.render('404.hbs', { pageTitle: 'Page Not Found' });
 });
 
 // Start server
@@ -142,7 +129,5 @@ const buildUrl = (url, token, query, resultsLimit = 10, pageOffset = 0) => {
 	return `${url}?$$app_token=${token}&${query}&$limit=${resultsLimit}&$offset=${pageOffset}&$order=:id`;
 }
 
-const buildQuery = (dba, boro) => {
-	// query = where=DBA%20like%20%27%25KATZ''S DELI%25%27&boro=MANHATTAN
-	return `where=DBA%20like%20%27%25${dba}%25%27&boro=${boro}`;
-}
+// query = where=DBA%20like%20%27%25KATZ''S DELI%25%27&boro=MANHATTAN
+const buildQuery = (dba, boro) => { return `where=DBA%20like%20%27%25${dba}%25%27&boro=${boro}`; }

@@ -42,8 +42,6 @@ app.get('/search', (req, res) => {
 
 app.post('/search', (req, res) => {
 	var {zipcode} = req.body;
-	var {borough} = req.body;
-	
 	var data = req.body;
 	var businessName = data.dba.toUpperCase();
 
@@ -57,6 +55,7 @@ app.post('/search', (req, res) => {
 
 	// if data.dba contains a value, add socrataQuery to urlQuery
 	if (data.dba.length > 0) {
+		// code below is URL encoding for `&$where=DBA like '%${businessName}%'`
 		socrataQuery += `&$where=DBA%20like%20%27%25${businessName}%25%27`;
 	}
 
@@ -74,9 +73,6 @@ app.post('/search', (req, res) => {
 	// Return total number of entries matching user's query
 	// var totalResults;
 
-	// Limit results to 10 health reports per page
-	// var resultsLimit = "&$limit=10";
-
 	// Preserve existing query string
 	var savedQuery = req.body;
 	console.log("savedQuery is: ");
@@ -86,7 +82,6 @@ app.post('/search', (req, res) => {
 	var pageNumber = 0;
 	var pageOffset = `&$offset=${pageNumber}`;
 
-	// request(`${socrataUrl}?${socrataQuery + "&" + urlQuery + resultsLimit + pageOffset + "&$order=:id"}`, (error, response, body) => {
 	request(`${socrataUrl}?${socrataQuery + "&" + urlQuery + pageOffset + "&$order=:id"}`, (error, response, body) => {
 
 		if (!error && response.statusCode === 200) {
@@ -102,6 +97,7 @@ app.post('/search', (req, res) => {
 					pageTitle: 'Search Results',
 					body: searchResults,
 					numberResults: `Your search returned ${searchResults.length} results.`,
+					resultNumbers: searchResults.length,
 					pagination: {
 						page: pageNumber + 1,
 						pageCount: Math.ceil(searchResults.length / 10) // TODO: Change to (totalResults or searchResults.length) divided by resultsLimit 
@@ -139,3 +135,14 @@ app.listen(port, () => {
 	console.log(`App is running on http://localhost: ${port}`);
 	console.log(`DOHMH New York City Restaurant Inspection Results: ${socrataUrl}`);
 });
+
+// HELPER FUNCTIONS
+// =======================================
+const buildUrl = (url, token, query, resultsLimit = 10, pageOffset = 0) => {
+	return `${url}?$$app_token=${token}&${query}&$limit=${resultsLimit}&$offset=${pageOffset}&$order=:id`;
+}
+
+const buildQuery = (dba, boro) => {
+	// query = where=DBA%20like%20%27%25KATZ''S DELI%25%27&boro=MANHATTAN
+	return `where=DBA%20like%20%27%25${dba}%25%27&boro=${boro}`;
+}

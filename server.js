@@ -38,17 +38,17 @@ app.post('/search', (req, res) => {
 	var {zipcode} = req.body;
 	var data = req.body;
 	var businessName = data.dba.toUpperCase();
+	console.log(`zipcode is ${zipcode}`);
 
 	// Replace any single quote mark in businessName with double quote
 	// This prevents socrataQuery from throwing an error
 	if (_.includes(businessName, "'")) { businessName = businessName.replace(/'/g, "''"); }
 
-	var socrataQuery = `$$app_token=${token}`;
+	var socrataQuery = "";
 
-	// if data.dba contains a value, add socrataQuery to urlQuery
+	// if data.dba contains a value, add to socrataQuery
 	if (data.dba.length > 0) {
-		// code below is URL encoding for `&$where=DBA like '%${businessName}%'`
-		socrataQuery += `&$where=DBA%20like%20%27%25${businessName}%25%27`;
+		socrataQuery += buildQuery(businessName);
 	}
 
 	// Remove business name query
@@ -61,20 +61,17 @@ app.post('/search', (req, res) => {
 
 	// Merge query strings. Exclude undefined query strings.
 	var urlQuery = querystring.stringify(_.merge(data));
+	socrataQuery += `&${urlQuery}`
+	console.log(`urlQuery is: ${urlQuery}`);
 	
-	// Return total number of entries matching user's query
-	// var totalResults;
-
 	// Preserve existing query string
 	var savedQuery = req.body;
-	console.log(`savedQuery is: + ${JSON.stringify(savedQuery)}`);
+	console.log(`savedQuery is: ${JSON.stringify(savedQuery)}`);
 
-	// Set page number ... Hard code for now
+	// Hard code pageNumber for now
 	var pageNumber = 0;
-	var pageOffset = `&$offset=${pageNumber}`;
 
-	request(`${socrataUrl}?${socrataQuery + "&" + urlQuery + pageOffset + "&$order=:id"}`, (error, response, body) => {
-
+	request(`${buildUrl(socrataUrl, token, socrataQuery)}`, (error, response, body) => {
 		if (!error && response.statusCode === 200) {
 			var searchResults = JSON.parse(body);
 
@@ -125,9 +122,10 @@ app.listen(port, () => {
 
 // HELPER FUNCTIONS
 // =======================================
-const buildUrl = (url, token, query, resultsLimit = 10, pageOffset = 0) => {
-	return `${url}?$$app_token=${token}&${query}&$limit=${resultsLimit}&$offset=${pageOffset}&$order=:id`;
+const buildUrl = (url, token, query, pageOffset = 0, resultsLimit = 10) => {
+	return `${url}?$$app_token=${token}&${query}&$offset=${pageOffset}&$limit=${resultsLimit}&$order=:id`;
 }
 
-// query = where=DBA%20like%20%27%25KATZ''S DELI%25%27&boro=MANHATTAN
-const buildQuery = (dba, boro) => { return `where=DBA%20like%20%27%25${dba}%25%27&boro=${boro}`; }
+const buildQuery = (dba) => `&$where=DBA%20like%20%27%25${dba}%25%27`; // URL encoding for `&$where=DBA like '%${businessName}%'`
+
+// const totalResults = () => ``; // Return total number of entries matching user's query

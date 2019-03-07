@@ -1,3 +1,7 @@
+![Screenshot of homepage](https://github.com/CodeWritingCow/NYC-restaurant-inspection-records/blob/master/Screenshot%20homepage.png)
+
+
+
 # NYC-restaurant-inspection-records
 An API for accessing New York City restaurant' inspection records.
 

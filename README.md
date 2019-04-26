@@ -1,11 +1,11 @@
 ![Screenshot of homepage](https://github.com/CodeWritingCow/NYC-restaurant-inspection-records/blob/master/Screenshot%20homepage.png)
 
 # NYCFoodSafety.org
-This repository contains the source for [NYCFoodSafety.org](http://nycfoodsafety.org), a Web application for finding New York City health violation citations for restaurants.
+This repository contains the source for [NYCFoodSafety.org](http://nycfoodsafety.org), a Node.js application for finding New York City health violation citations for restaurants.
 
-The application provides users with a search form for finding restaurants by name and borough. An advanced search form allows users to find restaurants by ZIP code and cuisine type.
+NYCFoodSafety.org provides users with a search form for finding restaurants by name and borough. An advanced search form allows users to find restaurants by ZIP code and cuisine type.
 
-The live application is hosted on Heroku. Its back end is a Node.js server that queries a dataset updated daily by the city Department of Health and Mental Hygiene. The server then returns its search results to the users.
+The application runs a Node.js server that queries a dataset updated daily by the city Department of Health and Mental Hygiene. The server then returns the search results to users. The live application is hosted on Heroku.
 
 ## Requirements
 

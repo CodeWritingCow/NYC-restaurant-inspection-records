@@ -18,13 +18,13 @@
   "author": "Gary Pang",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.0",
     "body-parser": "^1.18.3",
     "compression": "^1.7.4",
     "express": "^4.16.4",
     "hbs": "^4.0.4",
     "lodash": "^4.17.11",
-    "morgan": "^1.9.1",
-    "request": "^2.88.0"
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "artillery": "^1.6.0-28"

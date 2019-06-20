@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const hbs = require('hbs');
 const morgan = require('morgan'); // morgan is a HTTP request logger middleware
-const request = require('request'); // request makes HTTP calls
+const axios = require('axios');
 const bodyParser = require('body-parser'); // adds body object to request so app can access POST parameters
 const querystring = require('querystring');
 const _ = require('lodash');
@@ -71,11 +71,9 @@ app.post('/search', (req, res) => {
 	// Merge query strings. Exclude undefined query strings.
 	var urlQuery = querystring.stringify(_.merge(data));
 
-	request(`${socrataUrl}?${socrataQuery + "&" + urlQuery}`, (error, response, body) => {
-
-		if (!error && response.statusCode === 200) {
-			var searchResults = JSON.parse(body);
-
+	axios(`${socrataUrl}?${socrataQuery + "&" + urlQuery}`)
+		.then((response) => {
+			let searchResults = response.data;
 			if (searchResults.length === 0) {
 				return res.render("results.hbs", {
 					pageTitle: 'Search Results',
@@ -87,16 +85,16 @@ app.post('/search', (req, res) => {
 					body: searchResults,
 					numberResults: `Your search returned ${searchResults.length} results.`
 				});
-			}	
-
-		} else {
-			res.status(response.statusCode);
+			}
+		})
+		.catch((err) => {
+			// res.status(err.response.status);
 			res.render("error.hbs", {
 				pageTitle: 'Something went wrong!',
 				errorMessage: 'There seems to be an error. Let\'s go home and try something else.'
 			});
-		}
-	});
+		});
+
 });
 
 app.get('/report-violations', (req, res) => {

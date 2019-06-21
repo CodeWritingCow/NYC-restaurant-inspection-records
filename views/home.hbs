@@ -146,7 +146,7 @@
 
     	{{> header}}
 
-			<div class="parallax-container hide-on-small-only valign-wrapper" style="height: 600px;">
+			<div class="parallax-container hide-on-small-only valign-wrapper">
 				<div class="parallax">
 					<img id="parallaxImg" src="/public/assets/img/blank-black-picture.jpg" alt="Blank black picture is placeholder image">
 				</div>
@@ -208,6 +208,8 @@
 	<script>
 		document.addEventListener('DOMContentLoaded', function(){
 
+			let parallaxes = M.Parallax.init(document.querySelectorAll('.parallax'));
+
 			let liHome = document.getElementsByClassName('li-home');
 			for (let i = 0; i < liHome.length; i++) {
 				liHome[i].classList.add('active');
@@ -218,7 +220,6 @@
 		 $(document).ready(function() {
 		    $('select').formSelect();
 		    $(".sidenav").sidenav();
-			$('.parallax').parallax();
 		  });
 	</script>
 	<script type="text/javascript" src="/public/assets/javascript/randomImg.js"></script>

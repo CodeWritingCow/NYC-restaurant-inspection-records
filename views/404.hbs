@@ -15,7 +15,8 @@
     <body>
     	{{> header}}
     	<main class="parallax-container valign-wrapper">
-    		<div class="parallax"><img src="/public/assets/img/kevin-curtis-3308-unsplash-1024x676.jpg" alt="Dinner social, conversation and bar. Photo by Kevin Curtis on Unsplash.">
+    		<div class="parallax">
+				<img id="parallaxImg" src="/public/assets/img/blank-black-picture.jpg" alt="Blank black picture is placeholder image">
     		</div>
     			<div class="container" style="background-color: rgba(200,200,200,0.5); padding: 30px;">
 				    <h3 class="center" style="font-weight: bold;">{{pageTitle}}</h3>
@@ -40,4 +41,31 @@
 		    $('.parallax').parallax();
 		  });
     </script>
+	<script>
+		async function WebpIsSupported() {
+			// If the browser doesn't has the method createImageBitmap, you can't display webp format
+			if (!self.createImageBitmap) return false;
+		
+			// Base64 representation of a white point image
+			const webpData = 'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoCAAEAAQAcJaQAA3AA/v3AgAA=';
+			
+			// Retrieve the Image in Blob Format
+			const blob = await fetch(webpData).then(r => r.blob());
+
+			// If the createImageBitmap method succeeds, return true, otherwise false
+			return createImageBitmap(blob).then(() => true, () => false);
+		}
+
+		let imgSrc = '/public/assets/img/kevin-curtis-3308-unsplash-1024x676';
+
+		(async () => {
+			if(await WebpIsSupported()) {
+				imgSrc += '.webp'
+			} else {
+				imgSrc += '.jpg'
+			}
+			document.getElementById("parallaxImg").src = imgSrc;
+			document.getElementById("parallaxImg").alt = 'Dinner social, conversation and bar. Photo by Kevin Curtis on Unsplash.';
+		})();
+	</script>
 </html>

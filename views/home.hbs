@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <title>NYC Food Safety</title>
 		<!-- Compiled and minified CSS -->
-		<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-		<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"></noscript>
+		<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+		<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></noscript>
 
 		<!--Import Google Icon Font-->
 		<link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -146,7 +146,7 @@
 
     	{{> header}}
 
-			<div class="parallax-container hide-on-small-only valign-wrapper" style="height: 600px;">
+			<div class="parallax-container hide-on-small-only valign-wrapper">
 				<div class="parallax">
 					<img id="parallaxImg" src="/public/assets/img/blank-black-picture.jpg" alt="Blank black picture is placeholder image">
 				</div>
@@ -203,15 +203,18 @@
     </body>
 
 	<!-- Compiled and minified JavaScript -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<script>
-		 $(document).ready(function() {
-		    $('select').material_select();
-		    $(".button-collapse").sideNav();
-				$('.parallax').parallax();
-				$('.li-home').addClass('active');
-		  });
+		document.addEventListener('DOMContentLoaded', function(){
+			let formSelects = M.FormSelect.init(document.querySelectorAll('select'));
+			let sidenav = M.Sidenav.init(document.querySelectorAll('.sidenav'));
+			let parallaxes = M.Parallax.init(document.querySelectorAll('.parallax'));
+			let links = document.getElementsByClassName('li-home');
+			
+			for (let i = 0; i < links.length; i++) {
+				links[i].classList.add('active');
+			}
+		});
 	</script>
 	<script type="text/javascript" src="/public/assets/javascript/randomImg.js"></script>
 </html>

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>NYC Food Safety</title>
 		<!-- Compiled and minified CSS -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="/public/assets/css/main.css">
 		<!--Import Google Icon Font-->    
@@ -26,12 +26,10 @@
     </body>
 
 	<!-- Compiled and minified JavaScript -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<script>
-		 $(document).ready(function() {
-		    $('select').material_select();
-		    $(".button-collapse").sideNav();
-		  });        	
+		document.addEventListener('DOMContentLoaded', function(){
+			let sidenav = M.Sidenav.init(document.querySelectorAll('.sidenav'));
+		});
     </script>    
 </html>

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>Page Not Found</title>
 		<!-- Compiled and minified CSS -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="/public/assets/css/main.css">
 		<!--Import Google Icon Font-->    
@@ -32,14 +32,13 @@
     </body>
 
 	<!-- Compiled and minified JavaScript -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<script>
-		 $(document).ready(function() {
-		    $('select').material_select();
-		    $(".button-collapse").sideNav();
-		    $('.parallax').parallax();
-		  });
+		document.addEventListener('DOMContentLoaded', function(){
+			let formSelects = M.FormSelect.init(document.querySelectorAll('select'));
+			let sidenav = M.Sidenav.init(document.querySelectorAll('.sidenav'));
+			let parallaxes = M.Parallax.init(document.querySelectorAll('.parallax'));
+		});
     </script>
 	<script>
 		async function WebpIsSupported() {

@@ -2,27 +2,28 @@
 	<nav class="teal">
 		<div class="nav-wrapper container">
 		  <a href="/" class="brand-logo truncate">NYC Food Safety</a>
-	      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>		  
+	      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>		  
 		  <ul class="right hide-on-med-and-down">
 		    <li class="li-home"><a href="/">Home</a></li>
 		    <li class="li-search"><a href="/search">Search</a></li>
 		    <li class="li-violation"><a href="/report-violations">Report Violations</a></li>
-		  </ul>
-
-		<ul class="side-nav" id="mobile-demo">
-			<li>
-				<div class="user-view">
-					<div class="background teal">
-					</div>
-					<!-- <a href="#!user"><img class="circle" src="images/yuna.jpg"></a> -->
-					<a href="/"><span class="white-text name">NYC Food Safety</span></a>
-					<span class="white-text">Find restaurant inspection records</span>
-				</div>
-			</li>
-		    <li class="li-home"><a href="/"><i class="material-icons">home</i>Home</a></li>
-		    <li class="li-search"><a href="/search"><i class="material-icons">search</i>Search</a></li>
-		    <li class="li-violation"><a href="/report-violations"><i class="material-icons">report_problem</i>Report Violations</a></li>
-		</ul>		  
+		  </ul>		  
 		</div>
 	</nav>
+
+	<ul id="mobile-demo" class="sidenav">
+		<li>
+			<div class="user-view">
+				<div class="background teal">
+				</div>
+				<!-- <a href="#!user"><img class="circle" src="images/yuna.jpg"></a> -->
+				<a href="/"><span class="white-text name">NYC Food Safety</span></a>
+				<span class="white-text">Find restaurant inspection records</span>
+			</div>
+		</li>
+		<li class="li-home"><a href="/"><i class="material-icons">home</i>Home</a></li>
+		<li class="li-search"><a href="/search"><i class="material-icons">search</i>Search</a></li>
+		<li class="li-violation"><a href="/report-violations"><i class="material-icons">report_problem</i>Report Violations</a></li>
+	</ul>
+
 </header>

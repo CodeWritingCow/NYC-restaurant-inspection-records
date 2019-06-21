@@ -18,7 +18,7 @@
     {{> header}}
     <div class="parallax-container hide-on-small-only">
         <div class="parallax">
-            <img src="/public/assets/img/pan-with-olive-oil-ready-to-cooking-picjumbo-com 1024 x683.jpg" alt="Pan with olive oil ready to cooking. Photo by picjumbo.com">
+            <img id="parallaxImg" src="/public/assets/img/blank-black-picture.jpg" alt="Blank black picture is placeholder image">
         </div>
     </div>
 
@@ -81,5 +81,31 @@
         $('.li-violation').addClass('active');
     });
 </script>
+<script>
+    async function WebpIsSupported() {
+        // If the browser doesn't has the method createImageBitmap, you can't display webp format
+        if (!self.createImageBitmap) return false;
+    
+        // Base64 representation of a white point image
+        const webpData = 'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoCAAEAAQAcJaQAA3AA/v3AgAA=';
+        
+        // Retrieve the Image in Blob Format
+        const blob = await fetch(webpData).then(r => r.blob());
 
+        // If the createImageBitmap method succeeds, return true, otherwise false
+        return createImageBitmap(blob).then(() => true, () => false);
+    }
+
+    let imgSrc = '/public/assets/img/pan-with-olive-oil-ready-to-cooking-picjumbo-com 1024 x683';
+
+    (async () => {
+        if(await WebpIsSupported()) {
+            imgSrc += '.webp'
+        } else {
+            imgSrc += '.jpg'
+        }
+        document.getElementById("parallaxImg").src = imgSrc;
+        document.getElementById("parallaxImg").alt = 'Pan with olive oil ready to cooking. Photo by picjumbo.com.';
+    })();
+</script>
 </html>

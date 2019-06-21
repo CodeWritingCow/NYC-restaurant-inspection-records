@@ -71,14 +71,17 @@
 </body>
 
 <!-- Compiled and minified JavaScript -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('select').formSelect();
-        $(".sidenav").sidenav();
-        $('.parallax').parallax();
-        $('.li-violation').addClass('active');
+    document.addEventListener('DOMContentLoaded', function(){
+        let formSelects = M.FormSelect.init(document.querySelectorAll('select'));
+        let sidenav = M.Sidenav.init(document.querySelectorAll('.sidenav'));
+        let parallaxes = M.Parallax.init(document.querySelectorAll('.parallax'));
+        let links = document.getElementsByClassName('li-violation');
+        
+        for (let i = 0; i < links.length; i++) {
+            links[i].classList.add('active');
+        }
     });
 </script>
 <script>

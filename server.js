@@ -104,7 +104,7 @@ app.get('/report-violations', (req, res) => {
 });
 
 app.get('/loaderio-a94a804629c514aff835005d8a1f8cad', (req, res) => {
-	res.sendFile('public/assets/loaderio-a94a804629c514aff835005d8a1f8cad.txt', { root: __dirname });
+	res.sendFile('loaderio-a94a804629c514aff835005d8a1f8cad.txt', { root: __dirname });
 })
 
 app.use((req, res) => {

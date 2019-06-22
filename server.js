@@ -6,6 +6,7 @@ const axios = require('axios');
 const bodyParser = require('body-parser'); // adds body object to request so app can access POST parameters
 const querystring = require('querystring');
 const _ = require('lodash');
+const path = require('path');
 const compression = require('compression');
 
 app.use(compression());
@@ -103,9 +104,10 @@ app.get('/report-violations', (req, res) => {
 	});
 });
 
-app.get('/loaderio-a94a804629c514aff835005d8a1f8cad', (req, res) => {
-	res.sendFile('loaderio-a94a804629c514aff835005d8a1f8cad.txt', { root: __dirname });
-})
+// Verify domain ownership for Loader.io
+app.get('/loaderio-a94a804629c514aff835005d8a1f8cad.txt', (req, res) => 
+  res.sendFile(path.resolve(__dirname, './loaderio-a94a804629c514aff835005d8a1f8cad.txt'))
+);
 
 app.use((req, res) => {
 	res.status(404);

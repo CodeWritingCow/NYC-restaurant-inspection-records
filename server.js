@@ -105,8 +105,8 @@ app.get('/report-violations', (req, res) => {
 });
 
 // Verify domain ownership for Loader.io
-app.get('/loaderio-a94a804629c514aff835005d8a1f8cad.txt', (req, res) => 
-  res.sendFile(path.resolve(__dirname, './loaderio-a94a804629c514aff835005d8a1f8cad.txt'))
+app.get('/loaderio-fa3d7d398a3f4e83e9200e551ad73854.txt', (req, res) =>
+  res.sendFile(path.resolve(__dirname, './loaderio-fa3d7d398a3f4e83e9200e551ad73854.txt'))
 );
 
 app.use((req, res) => {

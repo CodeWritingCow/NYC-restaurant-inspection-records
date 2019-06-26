@@ -14,6 +14,12 @@ The application runs a Node.js server that queries a dataset updated daily by th
 - This project makes use of Socrata Open Data API to access the city's dataset. To get an API key, visit: https://dev.socrata.com/docs/app-tokens.html
 - A Socrata account is required to get an API key. To open an account, sign up: https://opendata.socrata.com/signup
 
+#### Getting Started
+- Register & Generate Socrata API key
+- API key referenced in token.js & 'module.exports = ###'
+- 'npm install'
+- 'npm start'
+
 #### Key Dependencies
 
 - [Node.js](https://nodejs.org/en/) with [Express.js](https://expressjs.com/) web framework

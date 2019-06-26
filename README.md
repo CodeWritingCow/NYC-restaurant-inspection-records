@@ -16,9 +16,9 @@ The application runs a Node.js server that queries a dataset updated daily by th
 
 #### Getting Started
 - Register & Generate Socrata API key
-- API key referenced in token.js & 'module.exports = ###'
-- 'npm install'
-- 'npm start'
+- API key referenced in token.js & `module.exports = ###`
+- `npm install`
+- `npm start`
 
 #### Key Dependencies
 

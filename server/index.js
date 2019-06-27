@@ -4,7 +4,7 @@ const app = express();
 // Express Routes
 
 const middleware = require('./routes/middleware-route.js');
-const router = require('./routes/api-route.js');
+const router = require('./routes/index-route.js');
 const api = require('./routes/api-route.js');
 const search = require('./routes/search-route.js');
 const violation_report = require('./routes/violation_report-route.js');
@@ -22,7 +22,7 @@ const path = require('path');
 hbs.registerPartials(path.join(__dirname, '../views/partials'));
 app.set('view engine', 'hbs');
 
-
+app.use(router)
 
 const port = process.env.PORT || 8080;
 
@@ -32,12 +32,6 @@ const socrataUrl = 'https://data.cityofnewyork.us/resource/9w7m-hzhe.json';
 
 // SET ROUTES
 // =======================================
-
-app.get('/', (req, res) => {
-	res.render('home.hbs', {
-		pageTitle: 'Restaurant Inspection Records'
-	});
-});
 
 app.get('/search', (req, res) => {
 	res.render('search.hbs', {

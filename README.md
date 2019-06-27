@@ -1,4 +1,4 @@
-![Screenshot of homepage](https://github.com/CodeWritingCow/NYC-restaurant-inspection-records/blob/master/screenshot%2001.gif)
+![Screenshot of homepage](https://github.com/CodeWritingCow/NYC-restaurant-inspection-records/blob/master/documentation/screenshot%2001.gif)
 
 # NYCFoodSafety.org
 This repository contains the source for [NYCFoodSafety.org](http://nycfoodsafety.org), a Node.js application for finding New York City health violation citations for restaurants.
@@ -16,9 +16,9 @@ The application runs a Node.js server that queries a dataset updated daily by th
 
 #### Getting Started
 - Register & Generate Socrata API key
-- API key referenced in token.js & 'module.exports = ###'
-- 'npm install'
-- 'npm start'
+- API key referenced in token.js & `module.exports = ###`
+- `npm install`
+- `npm start`
 
 #### Key Dependencies
 

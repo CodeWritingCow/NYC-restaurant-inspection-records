@@ -2,8 +2,10 @@
   "name": "nyc-restaurant-inspection-records",
   "version": "1.0.0",
   "description": "App that finds health inspection records of restaurants in New York City via a Socrata Open Data API",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
+    "start": "node server/index.js",
+    "prod-start": "nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -21,12 +23,14 @@
     "axios": "^0.19.0",
     "body-parser": "^1.18.3",
     "compression": "^1.7.4",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "hbs": "^4.0.4",
     "lodash": "^4.17.11",
     "morgan": "^1.9.1"
   },
   "devDependencies": {
-    "artillery": "^1.6.0-28"
+    "artillery": "^1.6.0-28",
+    "nodemon": "^1.19.1"
   }
 }

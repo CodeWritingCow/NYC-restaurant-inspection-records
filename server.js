@@ -10,10 +10,11 @@ const path = require('path');
 const compression = require('compression');
 
 app.use(compression());
-
 app.use(bodyParser.json());
+// TODO: assess on the extended rule set to false by default
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// TODO: change source directory to partials, changing server folder directory
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
@@ -107,6 +108,7 @@ app.get('/report-violations', (req, res) => {
 });
 
 // Verify domain ownership for Loader.io
+// TODO: changes to test directory for server folder directory change
 app.get('/loaderio-fa3d7d398a3f4e83e9200e551ad73854.txt', (req, res) =>
   res.sendFile(path.resolve(__dirname, './test/loaderio-fa3d7d398a3f4e83e9200e551ad73854.txt'))
 );

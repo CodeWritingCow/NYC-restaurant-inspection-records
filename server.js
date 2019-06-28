@@ -23,6 +23,8 @@ app.use(morgan('dev'));
 app.use(express.static(__dirname));
 
 const port = process.env.PORT || 8080;
+
+// token acquired by OpenNYC Data API
 const token = process.env.API_TOKEN || require('./token');
 const socrataUrl = 'https://data.cityofnewyork.us/resource/9w7m-hzhe.json';
 
@@ -106,7 +108,7 @@ app.get('/report-violations', (req, res) => {
 
 // Verify domain ownership for Loader.io
 app.get('/loaderio-fa3d7d398a3f4e83e9200e551ad73854.txt', (req, res) =>
-  res.sendFile(path.resolve(__dirname, './loaderio-fa3d7d398a3f4e83e9200e551ad73854.txt'))
+  res.sendFile(path.resolve(__dirname, './test/loaderio-fa3d7d398a3f4e83e9200e551ad73854.txt'))
 );
 
 app.use((req, res) => {

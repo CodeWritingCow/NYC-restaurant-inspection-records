@@ -8,7 +8,7 @@ const compression = require("compression");
 const middleware = express.Router();
 
 middleware.use(cors());
-middleware.use(morgan("dev")); // log all HTTP requests in the console
+// middleware.use(morgan("dev")); // log all HTTP requests in the console
 middleware.use(compression());
 middleware.use(bodyParser.json());
 middleware.use(bodyParser.urlencoded({ extended: true }));

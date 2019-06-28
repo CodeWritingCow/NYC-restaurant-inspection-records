@@ -2,18 +2,32 @@ config:
   target: http://localhost:8080
   phases:
     - duration: 60
-      arrivalRate: 1
+      arrivalRate: .1
       name: "1 user per second"
     - duration: 60
-      arrivalRate: 10
+      arrivalRate: 1
       name: "10 users per second"
     - duration: 60
-      arrivalRate: 100
+      arrivalRate: 10
       name: "100 users per second"
     - duration: 60
-      arrivalRate: 1000      
+      arrivalRate: 100     
       name: "1,000 users per second"
 scenarios:
   - flow:
-    - get:
-        url: "/"
+    - loop:
+      - get:
+          url: "/{{ $loopElement }}"
+      over:
+      - search
+      - ""
+      - report-violations
+      - ""
+      - search
+      - report-violations
+      - ""
+      - search
+      - ""
+      - ""
+
+      

@@ -27,8 +27,9 @@ The application runs a Node.js server that queries a dataset updated daily by th
 - [Materialize](https://materializecss.com/) front-end framework based on Material Design
 - [Google Material Icons](https://fonts.googleapis.com/icon?family=Material+Icons) style sheet
 
-## Author
-**Gary Pang** - [codewritingcow.com](http://codewritingcow.com)
+## Contributors
+- [Gary Pang](https://github.com/CodeWritingCow) (Maintainer)
+- [Marc Choa](https://github.com/omenwolf)
 
 ## References
 - [New York City Restaurant Inspection Results](https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j) from the city Department of Health and Mental Hygiene (DOHMH)

@@ -1,11 +1,11 @@
 const path = require("path");
-const _ = require('lodash');
-const axios = require('axios');
-const querystring = require('querystring');
-const token = process.env.API_TOKEN || require('../../token.js');
+const _ = require("lodash");
+const axios = require("axios");
+const querystring = require("querystring");
+const token = process.env.API_TOKEN || require("../../token.js");
 
 // token acquired by OpenNYC Data API
-const socrataUrl = 'https://data.cityofnewyork.us/resource/9w7m-hzhe.json';
+const socrataUrl = "https://data.cityofnewyork.us/resource/9w7m-hzhe.json";
 
 exports.get = (req, res) => {
   res.render("search.hbs", {

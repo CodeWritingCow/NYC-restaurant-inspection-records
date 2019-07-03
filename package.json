@@ -27,7 +27,9 @@
     "express": "^4.16.4",
     "hbs": "^4.0.4",
     "lodash": "^4.17.11",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "redis": "^2.8.0",
+    "response-time": "^2.3.2"
   },
   "devDependencies": {
     "artillery": "^1.6.0-28",

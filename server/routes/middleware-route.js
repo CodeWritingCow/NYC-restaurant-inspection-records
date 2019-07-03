@@ -8,12 +8,17 @@ const compression = require("compression");
 const middleware = express.Router();
 
 middleware.use(cors());
-// middleware.use(morgan("dev")); // log all HTTP requests in the console
+middleware.use(morgan("dev")); // log all HTTP requests in the console
 middleware.use(compression());
 middleware.use(bodyParser.json());
-middleware.use(bodyParser.urlencoded({ extended: true }));
+middleware.use(express.urlencoded({ extended: true }));
 
+// Handlebars
 let rootDirectory = path.join(__dirname, "../../");
-middleware.use(express.static(rootDirectory));
+// middleware.use(express.static(rootDirectory));
+
+// react
+middleware.use(express.static(rootDirectory + "dist"));
+
 
 module.exports = middleware;

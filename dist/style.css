@@ -1,0 +1,22 @@
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
+}
+
+#parallaxImg {
+	/* TESTING: default materialize setting opacity 0; */
+	opacity: 1 !important;
+}
+
+.search-bar {
+	padding: 30px !important;
+}
+
+.search-bar-text {
+	font-weight: bold;
+}

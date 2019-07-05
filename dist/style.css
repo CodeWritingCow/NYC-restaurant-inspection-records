@@ -20,3 +20,17 @@ main {
 .search-bar-text {
 	font-weight: bold;
 }
+
+.homebox {
+	background-color: rgba(255, 255, 255, 0.95); 
+	padding: 20px !important;
+}
+
+.homebox-font {
+	font-weight: bold;
+	margin: auto;
+}
+
+.searchbox {
+	border:20px solid teal;
+}

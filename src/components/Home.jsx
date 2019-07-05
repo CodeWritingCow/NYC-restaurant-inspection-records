@@ -3,11 +3,16 @@ import { Parallax } from "react-parallax";
 import ReactDOM from "react-dom";
 import axios from "axios";
 
+import Search from "./Search.jsx";
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // TO DO: set randomization on server-side
       // img: "https://res.cloudinary.com/hg7jltnn9/image/upload/v1562031386/public/assets/img/blank-black-picture_wsxz8k.jpg"
+
+      // img placeholder to visually check for parallax effect, REVERT when done to blank-blck-bg
       img:
         "https://res.cloudinary.com/hg7jltnn9/image/upload/v1562031418/public/assets/img/roman-arkhipov-123618-unsplash-1024x683_jhbqz7.jpg"
     };
@@ -16,18 +21,10 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        {/* <div className="parallax-container hide-on-small-only valign-wrapper">
-          <div className="parallax">
-            <img
-              id="parallaxImg"
-              src={this.state.img}
-              alt="Blank black picture is placeholder image"
-            />
-          </div>
-        </div> */}
         <div className="hide-on-small-only">
           <Parallax bgImage={this.state.img} strength={500}>
-            <div style={{ height: "500px" }} />
+            <Search/>
+            <div style={{ height: "150px" }} />
           </Parallax>
         </div>
         <div className="blue-grey lighten-5 hide-on-med-and-up">

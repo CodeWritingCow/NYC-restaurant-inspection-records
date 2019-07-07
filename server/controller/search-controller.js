@@ -98,34 +98,20 @@ exports.post = (req, res) => {
     }
   });
 
-  /*
-    const getData = function (url) {
-      // check redis cache
-        // if url exists as redis key
-          // return JSON.parse(keyValue)
-        // else
-          // axios.get(url)
-            // .then(response => {
-              save url as redis key
-              save response as redis value
-              return response
-            })
-            // .catch(err)
-    }
-  */
-
 };
 
 const getData = function(url) {
   // Check cache data from Redis
   client.get(url, (err, result) => {
     if (err) return err;
+    // if URL exists as Redis key
     if (result) {
+      // return Redis value
       return JSON.parse(result);
     } else {
       axios(url)
         .then(response => {
-            // Cache data on Redis for 1800ms
+            // Save url as Redis key, cache data on Redis for 1800ms
             client.setex(`${socrataQuery + "&" + urlQuery}`, 1800, JSON.stringify(response.data));
             return response.data;
         })

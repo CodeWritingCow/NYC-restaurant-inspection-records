@@ -97,4 +97,20 @@ exports.post = (req, res) => {
     }
   });
 
+  /*
+    const getData = function (url) {
+      // check redis cache
+        // if url exists as redis key
+          // return JSON.parse(keyValue)
+        // else
+          // axios.get(url)
+            // .then(response => {
+              save url as redis key
+              save response as redis value
+              return response
+            })
+            // .catch(err)
+    }
+  */
+
 };

@@ -54,3 +54,7 @@ Temporary Items
 
 # npm
 package-lock.json
+
+# bundle
+/dist/bundle.js
+/dist/bundle.js.gz

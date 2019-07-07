@@ -71,6 +71,7 @@ exports.post = (req, res) => {
         .then(response => {
           let searchResults = response.data;
 
+          // Cache data on Redis for 1800ms
           client.setex(`${socrataQuery + "&" + urlQuery}`, 1800, JSON.stringify(searchResults));
           
           if (searchResults.length === 0) {
@@ -114,3 +115,21 @@ exports.post = (req, res) => {
   */
 
 };
+
+const getData = function(url) {
+  // Check cache data from Redis
+  client.get(url, (err, result) => {
+    if (err) return err;
+    if (result) {
+      return JSON.parse(result);
+    } else {
+      axios(url)
+        .then(response => {
+            // Cache data on Redis for 1800ms
+            client.setex(`${socrataQuery + "&" + urlQuery}`, 1800, JSON.stringify(response.data));
+            return response.data;
+        })
+        .catch(err => err);
+    }
+  });
+}

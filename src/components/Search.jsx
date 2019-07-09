@@ -1,26 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
-//import { withRouter } from "react-router-dom";
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: []
-    };
+    this.state = {};
+    this.dbaInput = React.createRef();
+    this.boroInput = React.createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-
     const that = this;
 
     let data = JSON.stringify({
-      "dba": "PIZZA",
+      "dba": this.dbaInput.current.value,
       "zipcode": "",
-      "boro": "BRONX"
+      "boro": this.boroInput.current.value
     });
 
     fetch('/search', {
@@ -57,10 +55,11 @@ class Search extends React.Component {
                   name="dba"
                   className="validate"
                   placeholder="Restaurant name"
+                  ref={this.dbaInput}
                 />
               </div>
               <div className="input-field col s3">
-                <select name="boro">
+                <select name="boro" ref={this.boroInput}>
                   <option value="MANHATTAN">MANHATTAN</option>
                 </select>
               </div>

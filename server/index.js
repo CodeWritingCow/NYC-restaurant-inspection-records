@@ -39,5 +39,5 @@ app.get("/loaderio-fa3d7d398a3f4e83e9200e551ad73854.txt", (req, res) =>
 
 // Start server
 app.listen(port, () => {
-  // console.log(`App is running on http://localhost: ${port}`);
+  console.log(`App is running on http://localhost: ${port}`);
 });

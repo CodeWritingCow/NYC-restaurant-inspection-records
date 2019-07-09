@@ -5,20 +5,49 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.dbaInput = React.createRef();
+    this.boroInput = React.createRef();
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const that = this;
+
+    let data = JSON.stringify({
+      "dba": this.dbaInput.current.value,
+      "zipcode": "",
+      "boro": this.boroInput.current.value
+    });
+
+    fetch('/search', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: data
+    }).then(function (data) {
+      return data.json();
+    }).then(function (json) {
+      that.props.history.push('/search-results', json);
+    }).catch(function (err) {
+      console.log("error: ");
+      console.log(err);
+    });
+  };
+
   render() {
     return (
       <div className="container">
         <div className="row">
           <div className="col s4 homebox">
             <h4 className="teal-text text-lighten-2 hide-on-med-and-down homebox-font">
-              IS YOUR FOOD SAFE?
+              IS YOUR FOOD SAFE
             </h4>
             <h5>Find a restaurant's inspection records</h5>
           </div>
         </div>
         <div className="row">
-          <form className="col s12 card searchbox">
+          <form onSubmit={this.handleSubmit} className="col s12 card searchbox">
             <div className="row">
               <div className="input-field col s6">
                 <input
@@ -26,10 +55,11 @@ class Search extends React.Component {
                   name="dba"
                   className="validate"
                   placeholder="Restaurant name"
+                  ref={this.dbaInput}
                 />
               </div>
               <div className="input-field col s3">
-                <select name="boro">
+                <select name="boro" ref={this.boroInput}>
                   <option value="MANHATTAN">MANHATTAN</option>
                 </select>
               </div>

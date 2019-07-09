@@ -53,14 +53,16 @@ exports.post = (req, res) => {
           numberResults: "Your search returned no results."
         });
       } else {
-        res.render("results.hbs", {
-          pageTitle: "Search Results",
-          body: searchResults,
-          numberResults: `Your search returned ${searchResults.length} results.`
-        });
+        // res.render("results.hbs", {
+        //   pageTitle: "Search Results",
+        //   body: searchResults,
+        //   numberResults: `Your search returned ${searchResults.length} results.`
+        // });
+        res.json(searchResults)
       }
     })
     .catch(err => {
+      console.log(err);
       // res.status(err.response.status);
       res.render("error.hbs", {
         pageTitle: "Something went wrong!",

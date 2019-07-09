@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Cards from './Cards';
+//import { withRouter } from "react-router-dom";
 
 class Search extends React.Component {
   constructor(props) {
@@ -15,13 +15,14 @@ class Search extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
+    const that = this;
+
     let data = JSON.stringify({
       "dba": "PIZZA",
       "zipcode": "",
       "boro": "BRONX"
     });
 
-    let that = this;
     fetch('/search', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -29,9 +30,7 @@ class Search extends React.Component {
     }).then(function (data) {
       return data.json();
     }).then(function (json) {
-      console.log("json: ");
-      console.log(json);
-      that.setState({ data: json });
+      that.props.history.push('/search-results', json);
     }).catch(function (err) {
       console.log("error: ");
       console.log(err);
@@ -40,48 +39,42 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.data.length === 0 ? 
-          <div className="container">
-            <div className="row">
-              <div className="col s4 homebox">
-                <h4 className="teal-text text-lighten-2 hide-on-med-and-down homebox-font">
-                  IS YOUR FOOD SAFE
+      <div className="container">
+        <div className="row">
+          <div className="col s4 homebox">
+            <h4 className="teal-text text-lighten-2 hide-on-med-and-down homebox-font">
+              IS YOUR FOOD SAFE
             </h4>
-                <h5>Find a restaurant's inspection records</h5>
+            <h5>Find a restaurant's inspection records</h5>
+          </div>
+        </div>
+        <div className="row">
+          <form onSubmit={this.handleSubmit} className="col s12 card searchbox">
+            <div className="row">
+              <div className="input-field col s6">
+                <input
+                  type="text"
+                  name="dba"
+                  className="validate"
+                  placeholder="Restaurant name"
+                />
+              </div>
+              <div className="input-field col s3">
+                <select name="boro">
+                  <option value="MANHATTAN">MANHATTAN</option>
+                </select>
+              </div>
+              <div className="input-field col s3">
+                <button
+                  className="btn-large waves-effect waves-light"
+                  type="submit"
+                >
+                  SEARCH
+                </button>
               </div>
             </div>
-            <div className="row">
-              <form onSubmit={this.handleSubmit} className="col s12 card searchbox">
-                <div className="row">
-                  <div className="input-field col s6">
-                    <input
-                      type="text"
-                      name="dba"
-                      className="validate"
-                      placeholder="Restaurant name"
-                    />
-                  </div>
-                  <div className="input-field col s3">
-                    <select name="boro">
-                      <option value="MANHATTAN">MANHATTAN</option>
-                    </select>
-                  </div>
-                  <div className="input-field col s3">
-                    <button
-                      className="btn-large waves-effect waves-light"
-                      type="submit"
-                    >
-                      SEARCH
-                </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-         : 
-          <Cards data={this.state.data} />    
-        }
+          </form>
+        </div>
       </div>
     );
   }

@@ -23,7 +23,7 @@ class Home extends React.Component {
       <div>
         <div className="hide-on-small-only">
           <Parallax bgImage={this.state.img} strength={500}>
-            <Search/>
+            <Search history={this.props.history} />
             <div style={{ height: "150px" }} />
           </Parallax>
         </div>

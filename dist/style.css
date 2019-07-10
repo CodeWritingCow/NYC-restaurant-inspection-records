@@ -10,6 +10,7 @@ main {
 
 #parallaxImg {
 	/* TESTING: default materialize setting opacity 0; */
+	/* BUG: DEFAULT SET `OPACITY: 0;` */
 	opacity: 1 !important;
 }
 
@@ -33,4 +34,9 @@ main {
 
 .searchbox {
 	border:20px solid teal;
+}
+
+/* BUG: LIBRARY DEFULT `DISPLAY: NONE;` */
+#select-override {
+	display: inline-block !important;
 }

@@ -5,15 +5,25 @@ import axios from 'axios';
 class Search extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      boro: "MANHATTAN",
+      restaurant: "",
+      borough: ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"]
+    };
+    
     this.dbaInput = React.createRef();
     this.boroInput = React.createRef();
-
+       
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+//   handleChange(e) {
+//     this.setState({ [e.target.name]: e.target.value });
+//   }
+
+  handleSubmit(e) {
+    e.preventDefault();
     const that = this;
 
     let data = {
@@ -43,27 +53,39 @@ class Search extends React.Component {
             <h5>Find a restaurant's inspection records</h5>
           </div>
         </div>
+
         <div className="row">
           <form onSubmit={this.handleSubmit} className="col s12 card searchbox">
             <div className="row">
               <div className="input-field col s6">
                 <input
                   type="text"
-                  name="dba"
-                  className="validate"
+                  name="restaurant"
+                  // className="validate"
                   placeholder="Restaurant name"
-                  ref={this.dbaInput}
+<!--                   onChange={this.handleChange} -->
+                  ref={this.dbaInput}        
+                  required
                 />
               </div>
               <div className="input-field col s3">
-                <select name="boro" ref={this.boroInput}>
-                  <option value="MANHATTAN">MANHATTAN</option>
+                <select
+                  name="boro"
+                  ref={this.boroInput}
+                  id="select-override"
+                  value= {this.state.boro}
+<!--                   onChange={this.handleChange} -->
+                >
+                  {this.state.borough.map((boro, i) => (
+                    <option key={i} value={boro.toUpperCase()}>{boro}</option>
+                  ))}
                 </select>
               </div>
               <div className="input-field col s3">
                 <button
                   className="btn-large waves-effect waves-light"
-                  type="submit"
+                  onClick={this.handleSubmit}
+                  type="button"
                 >
                   SEARCH
                 </button>

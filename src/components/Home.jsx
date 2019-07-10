@@ -38,7 +38,7 @@ class Home extends React.Component {
 
         <div className="container">
           <div className="section">
-            <div class="row">
+            <div className="row">
               <div className="col s12 m4">
                 <div className="icon-block">
                   <h2 className="center teal-text text-lighten-2">
@@ -71,9 +71,9 @@ class Home extends React.Component {
               <div className="col s12 m4">
                 <div className="icon-block">
                   <h2 className="center teal-text text-lighten-2">
-                    <i class="material-icons medium">report_problem</i>
+                    <i className="material-icons medium">report_problem</i>
                   </h2>
-                  <h5 class="center">Report a problem</h5>
+                  <h5 className="center">Report a problem</h5>
                   {/* TO DO: link to report-violations use React Routes */}
                   <p className="light">
                     You can file complaints online about problems with food

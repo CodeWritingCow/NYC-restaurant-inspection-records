@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import axios from 'axios';
 
 class Search extends React.Component {
   constructor(props) {
@@ -15,24 +16,20 @@ class Search extends React.Component {
     event.preventDefault();
     const that = this;
 
-    let data = JSON.stringify({
+    let data = {
       "dba": this.dbaInput.current.value,
       "zipcode": "",
       "boro": this.boroInput.current.value
-    });
+    };
 
-    fetch('/search', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: data
-    }).then(function (data) {
-      return data.json();
-    }).then(function (json) {
-      that.props.history.push('/search-results', json);
-    }).catch(function (err) {
-      console.log("error: ");
-      console.log(err);
-    });
+    axios.post('/search', data)
+      .then(res => {
+        that.props.history.push('/search-results', res.data);
+      })
+      .catch(err => {
+        console.log("error: ");
+        console.log(err);
+      });
   };
 
   render() {

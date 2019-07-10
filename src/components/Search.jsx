@@ -1,27 +1,46 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import axios from 'axios';
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userBorough: "MANHATTAN",
+      boro: "MANHATTAN",
       restaurant: "",
       borough: ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"]
     };
+    
+    this.dbaInput = React.createRef();
+    this.boroInput = React.createRef();
+       
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
 
+//   handleChange(e) {
+//     this.setState({ [e.target.name]: e.target.value });
+//   }
+
   handleSubmit(e) {
-    // TO DO: send request for search
-    // endpoint: /?dba=[restaurant name]&boro=[borough choice]
-    console.log(this.state.restaurant);
-    console.log(this.state.userBorough);
-  }
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+    e.preventDefault();
+    const that = this;
+
+    let data = {
+      "dba": this.dbaInput.current.value,
+      "zipcode": "",
+      "boro": this.boroInput.current.value
+    };
+
+    axios.post('/search', data)
+      .then(res => {
+        that.props.history.push('/search-results', res.data);
+      })
+      .catch(err => {
+        console.log("error: ");
+        console.log(err);
+      });
+  };
 
   render() {
     return (
@@ -29,14 +48,14 @@ class Search extends React.Component {
         <div className="row">
           <div className="col s4 homebox">
             <h4 className="teal-text text-lighten-2 hide-on-med-and-down homebox-font">
-              IS YOUR FOOD SAFE?
+              IS YOUR FOOD SAFE
             </h4>
             <h5>Find a restaurant's inspection records</h5>
           </div>
         </div>
 
         <div className="row">
-          <form className="col s12 card searchbox">
+          <form onSubmit={this.handleSubmit} className="col s12 card searchbox">
             <div className="row">
               <div className="input-field col s6">
                 <input
@@ -44,16 +63,18 @@ class Search extends React.Component {
                   name="restaurant"
                   // className="validate"
                   placeholder="Restaurant name"
-                  onChange={this.handleChange}
+<!--                   onChange={this.handleChange} -->
+                  ref={this.dbaInput}        
                   required
                 />
               </div>
               <div className="input-field col s3">
                 <select
-                  name="userBorough"
+                  name="boro"
+                  ref={this.boroInput}
                   id="select-override"
-                  value= {this.state.userBorough}
-                  onChange={this.handleChange}
+                  value= {this.state.boro}
+<!--                   onChange={this.handleChange} -->
                 >
                   {this.state.borough.map((boro, i) => (
                     <option key={i} value={boro.toUpperCase()}>{boro}</option>

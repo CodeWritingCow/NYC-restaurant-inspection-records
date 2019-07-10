@@ -6,8 +6,6 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      boro: "MANHATTAN",
-      restaurant: "",
       borough: ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"]
     };
     
@@ -15,12 +13,9 @@ class Search extends React.Component {
     this.boroInput = React.createRef();
        
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
   }
 
-//   handleChange(e) {
-//     this.setState({ [e.target.name]: e.target.value });
-//   }
+
 
   handleSubmit(e) {
     e.preventDefault();
@@ -61,9 +56,7 @@ class Search extends React.Component {
                 <input
                   type="text"
                   name="restaurant"
-                  // className="validate"
                   placeholder="Restaurant name"
-<!--                   onChange={this.handleChange} -->
                   ref={this.dbaInput}        
                   required
                 />
@@ -73,8 +66,6 @@ class Search extends React.Component {
                   name="boro"
                   ref={this.boroInput}
                   id="select-override"
-                  value= {this.state.boro}
-<!--                   onChange={this.handleChange} -->
                 >
                   {this.state.borough.map((boro, i) => (
                     <option key={i} value={boro.toUpperCase()}>{boro}</option>

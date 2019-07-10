@@ -30,6 +30,7 @@ The application runs a Node.js server that queries a dataset updated daily by th
 ## Contributors
 - [Gary Pang](https://github.com/CodeWritingCow) (Maintainer)
 - [Marc Choa](https://github.com/omenwolf)
+- [Jeffrey Fisher](https://github.com/jeffslofish)
 
 ## References
 - [New York City Restaurant Inspection Results](https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j) from the city Department of Health and Mental Hygiene (DOHMH)

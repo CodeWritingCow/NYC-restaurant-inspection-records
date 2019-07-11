@@ -9,6 +9,7 @@ const api = require("./routes/api-route.js");
 const search = require("./routes/search-route.js");
 const violation_report = require("./routes/violation_report-route.js");
 const error404 = require("./routes/error-route.js");
+const shuffle_image = require("./routes/shuffle_image-route.js")
 
 app.use(middleware);
 
@@ -19,7 +20,9 @@ const path = require("path");
 hbs.registerPartials(path.join(__dirname, "../views/partials"));
 app.set("view engine", "hbs");
 
+
 app.use(router);
+app.use(shuffle_image)
 app.use(search);
 app.use(violation_report);
 app.use(error404);

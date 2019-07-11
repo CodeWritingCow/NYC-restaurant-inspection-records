@@ -15,7 +15,7 @@ class SearchResults extends React.Component {
       <div className="container">
         <div className="row">
           <p>Your search returned {data.length} results.</p>
-          {data.map((data, i) =>
+          {data.length > 0 ? data.map((data, i) =>
             <Card key={i}
               dba={data.dba}
               cuisine_description={data.cuisine_description}
@@ -33,7 +33,7 @@ class SearchResults extends React.Component {
               grade_date={data.grade_date}
               inspection_type={data.inspection_type}
             />
-          )}
+          ) : ""}
         </div>
       </div>
     );

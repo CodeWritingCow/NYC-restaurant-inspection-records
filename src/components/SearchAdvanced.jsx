@@ -86,48 +86,51 @@ class SearchAdvanced extends React.Component {
 
     render() {
         return (
-            <div className="container">
-
-                <div className="row">
-                    <form onSubmit={this.handleSubmit} className="col s12 card searchbox">
-                        <h5 className="">Find a restaurant</h5>
+            <div className="blue-grey lighten-5">
+                <main className="container" style={{'padding': '35px', 'marginBottom': '50px'}}>
+                    <div className="section">
+                        <h3 className="teal-text text-lighten-2" style={{'fontWeight': 'bold'}}>Advanced Search</h3>
                         <div className="row">
-                            <div className="input-field col s12 m8">
-                                <label htmlFor="dba">Restaurant Name</label>
-                                <input type="text" name="dba" ref={this.dbaInput} />
-                            </div>
-                            <div className="input-field col s12 m4">
-                                <select id="select-override" name="boro" ref={this.boroInput}>
-                                    {this.state.borough.map((boro, i) => (
-                                        <option key={i} value={boro.toUpperCase()}>{boro}</option>
-                                    ))}
-                                </select>
-                                {/* <label>Borough</label> */}
-                            </div>		
-                        </div>
+                            <form onSubmit={this.handleSubmit} className="col s12 card">
+                                <h5 className="">Find a restaurant</h5>
+                                <div className="row">
+                                    <div className="input-field col s12 m8">
+                                        <label htmlFor="dba">Restaurant Name</label>
+                                        <input type="text" name="dba" ref={this.dbaInput} />
+                                    </div>
+                                    <div className="input-field col s12 m4">
+                                        <select id="select-override" name="boro" ref={this.boroInput}>
+                                            {this.state.borough.map((boro, i) => (
+                                                <option key={i} value={boro.toUpperCase()}>{boro}</option>
+                                            ))}
+                                        </select>
+                                        {/* <label>Borough</label> */}
+                                    </div>		
+                                </div>
 
-                        <div className="row">
-                           <div className="input-field col s12 m8">
-                                <select name="cuisine_description" id="select-override" ref={this.cuisineInput}>
-                                    <option value="" disabled selected>None</option>
-                                    <CuisineMenu cuisines={this.state.cuisines} />
-                                </select>
-                                {/* <label>Cuisine Type</label> */}
-                            </div>
-                            <div className="input-field col s12 m4">
-                                <label htmlFor="zipcode">ZIP Code</label>
-                                <input type="text" name="zipcode" ref={this.zipInput} pattern="[0-9]{5}" title="ZIP code must be a five-digit number" />
-                            </div>		
-                        </div>
+                                <div className="row">
+                                <div className="input-field col s12 m8">
+                                        <select name="cuisine_description" id="select-override" ref={this.cuisineInput}>
+                                            <option value="" disabled selected>None</option>
+                                            <CuisineMenu cuisines={this.state.cuisines} />
+                                        </select>
+                                        {/* <label>Cuisine Type</label> */}
+                                    </div>
+                                    <div className="input-field col s12 m4">
+                                        <label htmlFor="zipcode">ZIP Code</label>
+                                        <input type="text" name="zipcode" ref={this.zipInput} pattern="[0-9]{5}" title="ZIP code must be a five-digit number" />
+                                    </div>		
+                                </div>
 
-                        <div className="row center">
-                            <button className="btn-large waves-effect waves-light center-align" type="submit">Search
-                                <i className="material-icons right">search</i>
-                            </button>
+                                <div className="row center">
+                                    <button className="btn-large waves-effect waves-light center-align" type="submit">Search
+                                        <i className="material-icons right">search</i>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
-
+                    </div>
+                </main>
             </div>
         )
     }    

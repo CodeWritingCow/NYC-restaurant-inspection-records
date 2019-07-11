@@ -4,6 +4,7 @@ import { Route, Switch, Link, BrowserRouter as Router } from "react-router-dom";
 
 import Home from "./components/Home.jsx";
 import SearchResults from "./components/SearchResults.jsx";
+import NotFound from "./components/404.jsx";
 // import About from "./components/About.jsx";
 // import Comics from "./components/Comics.jsx";
 
@@ -48,8 +49,11 @@ class App extends React.Component {
             </div>
           </nav>
         </header>
-        <Route path="/" exact component={Home} />
-        <Route path="/search-results" exact component={SearchResults} />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/search-results" exact component={SearchResults} />
+          <Route path="*" component={NotFound} />
+        </Switch>
         {/* <Route path="/about/" component={About} />
           <Route path="/comics/" component={Comics} /> */}
         {/* FOOTER START */}

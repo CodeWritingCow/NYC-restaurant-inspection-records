@@ -5,10 +5,13 @@ import axios from 'axios';
 class SearchAdvanced extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            borough: ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"]
+        }
 
         this.dbaInput = React.createRef();
         this.zipInput = React.createRef();
+        this.boroInput = React.createRef();
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -19,7 +22,8 @@ class SearchAdvanced extends React.Component {
 
         let data = {
             "dba": this.dbaInput.current.value,
-            "zipcode": this.zipInput.current.value
+            "zipcode": this.zipInput.current.value,
+            "boro": this.boroInput.current.value
         }        
 
         axios.post('/search', data)
@@ -44,17 +48,14 @@ class SearchAdvanced extends React.Component {
                                 <label htmlFor="dba">Restaurant Name</label>
                                 <input type="text" name="dba" ref={this.dbaInput} />
                             </div>
-                            {/* <div className="input-field col s12 m4">
-                                <select id="boro" name="boro">
-                                    <option value="" disabled selected>None</option>
-                                    <option value="BRONX">Bronx</option>
-                                    <option value="BROOKLYN">Brooklyn</option>
-                                    <option value="MANHATTAN">Manhattan</option>
-                                    <option value="QUEENS">Queens</option>
-                                    <option value="STATEN ISLAND">Staten Island</option>
+                            <div className="input-field col s12 m4">
+                                <select id="select-override" name="boro" ref={this.boroInput}>
+                                    {this.state.borough.map((boro, i) => (
+                                        <option key={i} value={boro.toUpperCase()}>{boro}</option>
+                                    ))}
                                 </select>
-                                <label>Borough</label>
-                            </div>		 */}
+                                {/* <label>Borough</label> */}
+                            </div>		
                         </div>
 
                         <div className="row">

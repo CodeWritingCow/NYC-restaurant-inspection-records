@@ -1,12 +1,51 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import axios from 'axios';
+import CuisineMenu from './CuisineMenu.jsx';
 
 class SearchAdvanced extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            borough: ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"]
+            borough: ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"],
+            cuisines: [
+                {
+                    type: "Fast Foods",
+                    list: ["Chicken", "Donuts", "Hamburgers", "Pizza", "Pizza/Italian", "Sandwiches", "Sandwiches/Salads/Mixed Buffet"]
+                },
+                {
+                    type: "American",
+                    list: ["American", "Caribbean", "Seafood", "Steak", "Soul Food"]
+                },
+                {
+                    type: "Asian",
+                    list: ["Asian", "Chinese", "Chinese/Japanese", "Japanese", "Korean", "Filipino", "Indian", "Thai", "Vietnamese/Cambodian/Malaysia", "Armenian"]
+                },
+                {
+                    type: "European",
+                    list: ["Eastern European", "Greek", "German", "Italian", "Jewish/Kosher", "Mediterranean", "Polish", "Russian"]
+                },
+                {
+                    type: "Health food",
+                    list: ["Fruits/Vegetables", "Salads", "Vegetarian"]
+                },
+                {
+                    type: "Latin American",
+                    list: ["Mexican", "Tex-Mex", "Latin (Cuban, Dominican, Puerto Rican, South & Central American)", "Peruvian", "Spanish"]
+                },
+                {
+                    type: "African",
+                    list: ["African", "Ethiopian"]
+                },
+                {
+                    type: "Bakeries, Cafes and Deli",
+                    list: ["Bagels/Pretzels", "Bakery", "CafÃ©/Coffee/Tea", "Delicatessen", "Ice Cream, Gelato, Yogurt, Ices", "Pancakes/Waffles"]
+                },
+                {
+                    type: "Other",
+                    list: ["Other"]
+                }
+            ]
         }
 
         this.dbaInput = React.createRef();
@@ -71,71 +110,7 @@ class SearchAdvanced extends React.Component {
                            <div className="input-field col s12 m8">
                                 <select name="cuisine_description" id="select-override" ref={this.cuisineInput}>
                                     <option value="" disabled selected>None</option>
-                                    <optgroup label="Fast Foods">
-                                        <option value="Chicken">Chicken</option>
-                                        <option value="Donuts">Donuts</option>
-                                        <option value="Hamburgers">Hamburgers</option>					
-                                        <option value="Pizza">Pizza</option>
-                                        <option value="Pizza/Italian">Pizza/Italian</option>
-                                        <option value="Sandwiches">Sandwiches</option>
-                                        <option value="Sandwiches/Salads/Mixed Buffet">Sandwiches/Salads/Mixed Buffet</option>
-                                    </optgroup>
-                                    <optgroup label="American">
-                                        <option value="American">American</option>
-                                        <option value="Caribbean">Caribbean</option>
-                                        <option value="Seafood">Seafood</option>
-                                        <option value="Steak">Steak</option>
-                                        <option value="Soul Food">Soul Food</option>					
-                                    </optgroup>
-                                    <optgroup label="Asian">
-                                        <option value="Asian">Asian</option>
-                                        <option value="Chinese">Chinese</option>
-                                        <option value="Chinese/Japanese">Chinese/Japanese</option>
-                                        <option value="Japanese">Japanese</option>
-                                        <option value="Korean">Korean</option>
-                                        <option value="Filipino">Filipino</option>										
-                                        <option value="Indian">Indian</option>
-                                        <option value="Thai">Thai</option>
-                                        <option value="Vietnamese/Cambodian/Malaysia">Vietnamese/Cambodian/Malaysia</option>
-                                    </optgroup>
-                                    <optgroup label="European">
-                                        <option value="Eastern European">Eastern European</option>
-                                        <option value="Greek">Greek</option>
-                                        <option value="German">German</option>
-                                        <option value="Italian">Italian</option>
-                                        <option value="Jewish/Kosher">Jewish/Kosher</option>
-                                        <option value="Mediterranean">Mediterranean</option>				
-                                        <option value="Polish">Polish</option>
-                                        <option value="Russian">Russian</option>
-                                    </optgroup>
-                                    <optgroup label="Health food">
-                                        <option value="Fruits/Vegetables">Fruits/Vegetables</option>
-                                        <option value="Salads">Salads</option>
-                                        <option value="Vegetarian">Vegetarian</option>
-                                    </optgroup>
-                                    <optgroup label="Latin American">
-                                        <option value="Mexican">Mexican</option>
-                                        <option value="Tex-Mex">Tex-Mex</option>
-                                        <option value="Latin (Cuban, Dominican, Puerto Rican, South & Central American)">Latin (Cuban, Dominican, Puerto Rican, South & Central American)</option>
-                                        <option value="Peruvian">Peruvian</option>
-                                        <option value="Spanish">Spanish</option>
-                                    </optgroup>
-                                    <optgroup label="African">
-                                        <option value="African">African</option>
-                                        <option value="Ethiopian">Ethiopian</option>
-                                    </optgroup>
-                                    <optgroup label="Bakeries, Cafes and Deli">
-                                        <option value="Bagels/Pretzels">Bagels/Pretzels</option>
-                                        <option value="Bakery">Bakery</option>
-                                        <option value="CafÃ©/Coffee/Tea">Cafe</option>
-                                        <option value="Delicatessen">Delicatessen</option>
-                                        <option value="Ice Cream, Gelato, Yogurt, Ices">Ice Cream, Gelato, Yogurt, Ices</option>
-                                        <option value="Pancakes/Waffles">Pancakes/Waffles</option>
-                                    </optgroup>
-                                    <optgroup label="Other">
-                                        <option value="Armenian">Armenian</option>
-                                        <option value="Other">Other</option>
-                                    </optgroup>
+                                    <CuisineMenu cuisines={this.state.cuisines} />
                                 </select>
                                 {/* <label>Cuisine Type</label> */}
                             </div>

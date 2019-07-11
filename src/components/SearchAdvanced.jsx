@@ -12,6 +12,7 @@ class SearchAdvanced extends React.Component {
         this.dbaInput = React.createRef();
         this.zipInput = React.createRef();
         this.boroInput = React.createRef();
+        this.cuisineInput = React.createRef();
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -23,8 +24,16 @@ class SearchAdvanced extends React.Component {
         let data = {
             "dba": this.dbaInput.current.value,
             "zipcode": this.zipInput.current.value,
-            "boro": this.boroInput.current.value
-        }        
+            "boro": this.boroInput.current.value,
+            "cuisine_description": this.cuisineInput.current.value
+        }
+
+        // if user doesn't pick cuisine from dropdown menu
+        // remove cuisine_description from query
+        // this prevents server from throwing an error
+        if (data.cuisine_description === "") {
+            delete data.cuisine_description;
+        }
 
         axios.post('/search', data)
             .then(res => {
@@ -59,8 +68,8 @@ class SearchAdvanced extends React.Component {
                         </div>
 
                         <div className="row">
-                        {/*    <div className="input-field col s12 m8">
-                                <select name="cuisine_description" id="cuisine_description">
+                           <div className="input-field col s12 m8">
+                                <select name="cuisine_description" id="select-override" ref={this.cuisineInput}>
                                     <option value="" disabled selected>None</option>
                                     <optgroup label="Fast Foods">
                                         <option value="Chicken">Chicken</option>
@@ -128,8 +137,8 @@ class SearchAdvanced extends React.Component {
                                         <option value="Other">Other</option>
                                     </optgroup>
                                 </select>
-                                <label>Cuisine Type</label>
-                            </div> */}
+                                {/* <label>Cuisine Type</label> */}
+                            </div>
                             <div className="input-field col s12 m4">
                                 <label htmlFor="zipcode">ZIP Code</label>
                                 <input type="text" name="zipcode" ref={this.zipInput} pattern="[0-9]{5}" title="ZIP code must be a five-digit number" />

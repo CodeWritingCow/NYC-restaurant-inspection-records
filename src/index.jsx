@@ -6,8 +6,7 @@ import Home from "./components/Home.jsx";
 import SearchResults from "./components/SearchResults.jsx";
 import Search from "./components/Search.jsx";
 import SearchAdvanced from "./components/SearchAdvanced.jsx";
-// import About from "./components/About.jsx";
-// import Comics from "./components/Comics.jsx";
+import Report from "./components/Report.jsx"
 
 class App extends React.Component {
   constructor(props) {
@@ -53,8 +52,8 @@ class App extends React.Component {
         <Route path="/" exact component={Home} />
         <Route path="/search-results" exact component={SearchResults} />
         <Route path="/search" exact component={SearchAdvanced} />
-        {/* <Route path="/about/" component={About} />
-          <Route path="/comics/" component={Comics} /> */}
+        <Route path="/report-violations" exact component={Report} />
+
         {/* FOOTER START */}
         <footer className="page-footer teal lighten-2">
           <div className="container">

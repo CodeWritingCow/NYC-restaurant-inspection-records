@@ -8,8 +8,15 @@ const token = process.env.API_TOKEN || require("../../token.js");
 const socrataUrl = "https://data.cityofnewyork.us/resource/9w7m-hzhe.json";
 
 exports.get = (req, res) => {
-  res.render("search.hbs", {
-    pageTitle: "Advanced Search"
+  // res.render("search.hbs", {
+  //   pageTitle: "Advanced Search"
+  // });
+
+  // send html file when user directly requests this endpoint
+  res.sendFile(path.join(__dirname, "../../dist/index.html"), (err) => {
+    if (err) {
+      res.status(500).send(err);
+    }
   });
 };
 

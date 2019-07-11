@@ -36,6 +36,10 @@ main {
 	border:20px solid teal;
 }
 
+.violation-title {
+	font-weight: bold;
+}
+
 /* BUG: LIBRARY DEFULT `DISPLAY: NONE;` */
 #select-override {
 	display: inline-block !important;

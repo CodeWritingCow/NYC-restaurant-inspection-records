@@ -9,13 +9,25 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // TO DO: set randomization on server-side
-      // img: "https://res.cloudinary.com/hg7jltnn9/image/upload/v1562031386/public/assets/img/blank-black-picture_wsxz8k.jpg"
-
-      // img placeholder to visually check for parallax effect, REVERT when done to blank-blck-bg
-      img:
-        "https://res.cloudinary.com/hg7jltnn9/image/upload/v1562031418/public/assets/img/roman-arkhipov-123618-unsplash-1024x683_jhbqz7.jpg"
+      img: ""
     };
+    this.getImage = this.getImage.bind(this);
+  }
+
+  componentDidMount() {
+    this.getImage();
+  }
+
+  getImage() {
+    axios.get("/image")
+      .then(res => {
+        this.setState({
+          img: res.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {

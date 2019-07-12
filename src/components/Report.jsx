@@ -1,10 +1,13 @@
 import React from "react";
 import { Parallax } from "react-parallax";
 
+
+// CHANGE: Functional Component
 class Report extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // TODO: create img src inline
       img: "https://res.cloudinary.com/hg7jltnn9/image/upload/f_auto,q_auto/v1562031427/public/assets/img/pan-with-olive-oil-ready-to-cooking-picjumbo-com_1024_x683_r6v9jd.jpg"
     };
   }

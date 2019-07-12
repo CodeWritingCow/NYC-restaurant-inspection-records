@@ -2,11 +2,12 @@ import React, { Suspense, Fragment, Component } from "react";
 import ReactDOM from "react-dom";
 import { Route, Switch, Link, BrowserRouter as Router } from "react-router-dom";
 
+import Header from "./components/Header.jsx";
 import Home from "./components/Home.jsx";
 import SearchResults from "./components/SearchResults.jsx";
 import Search from "./components/Search.jsx";
 import SearchAdvanced from "./components/SearchAdvanced.jsx";
-import Report from "./components/Report.jsx"
+import Report from "./components/Report.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -18,38 +19,8 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <header>
-          <nav className="teal">
-            <div className="nav-wrapper container">
-              <ul>
-                <li>
-                  <Link className="brand-logo truncate" to="/">
-                    NYC Food Safety
-                  </Link>
-                  <Link
-                    // TO DO: reusable side-bar nav component
-                    to="#"
-                    data-target="mobile-demo"
-                    className="sidenav-trigger"
-                  >
-                    <i className="material-icons">menu</i>
-                  </Link>
-                </li>
-              </ul>
-              <ul className="right hide-on-med-and-down">
-                <li className="li-home">
-                  <Link to="/">Home</Link>
-                </li>
-                <li className="li-search">
-                  <Link to="/search">Search</Link>
-                </li>
-                <li className="li-violation">
-                  <Link to="/report-violations">Report Violations</Link>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </header>
+        <Header />
+
         <Route path="/" exact component={Home} />
         <Route path="/search-results" exact component={SearchResults} />
         <Route path="/search" exact component={SearchAdvanced} />

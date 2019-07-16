@@ -9,6 +9,7 @@ import SearchResults from "./components/SearchResults.jsx";
 import Search from "./components/Search.jsx";
 import SearchAdvanced from "./components/SearchAdvanced.jsx";
 import Report from "./components/Report.jsx";
+import NotFound from "./components/404.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -21,13 +22,15 @@ class App extends React.Component {
     return (
       <Router>
         <Header />
+        
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/search-results" exact component={SearchResults} />
+          <Route path="/search" exact component={SearchAdvanced} />
+          <Route path="/report-violations" exact component={Report} />
+          <Route path="*" component={NotFound} />
+        </Switch>
 
-        <Route path="/" exact component={Home} />
-        <Route path="/search-results" exact component={SearchResults} />
-        <Route path="/search" exact component={SearchAdvanced} />
-        <Route path="/report-violations" exact component={Report} />
-
-        {/* FOOTER START */}
         <Footer/>
       </Router>
     );

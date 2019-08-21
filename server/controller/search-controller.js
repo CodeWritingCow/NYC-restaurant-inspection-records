@@ -100,6 +100,7 @@ exports.post = (req, res) => {
 
 };
 
+// TODO: Refactor controller.post method to use getData()
 const getData = function(url) {
   // Check cache data from Redis
   client.get(url, (err, result) => {

@@ -3,6 +3,8 @@ const _ = require("lodash");
 const axios = require("axios");
 const querystring = require("querystring");
 const token = process.env.API_TOKEN || require("../../token.js");
+const redisUrl = process.env.REDIS_URL || require("../../redisUrl.js");
+const client = require('redis').createClient(redisUrl);
 
 // token acquired by OpenNYC Data API
 const socrataUrl = "https://data.cityofnewyork.us/resource/9w7m-hzhe.json";
@@ -44,28 +46,77 @@ exports.post = (req, res) => {
   // Merge query strings. Exclude undefined query strings.
   var urlQuery = querystring.stringify(_.merge(data));
 
-  axios(`${socrataUrl}?${socrataQuery + "&" + urlQuery}`)
-    .then(response => {
-      let searchResults = response.data;
+  // Check cache data from Redis
+  client.get(`${socrataQuery + "&" + urlQuery}`, (err, result) => {
+    let searchResults = JSON.parse(result);
+
+    if (searchResults) {
+      
       if (searchResults.length === 0) {
-        return res.render("results.hbs", {
-          pageTitle: "Search Results",
-          numberResults: "Your search returned no results."
-        });
-      } else {
-        res.render("results.hbs", {
-          pageTitle: "Search Results",
-          body: searchResults,
-          numberResults: `Your search returned ${searchResults.length} results.`
-        });
-      }
-    })
-    .catch(err => {
-      // res.status(err.response.status);
-      res.render("error.hbs", {
-        pageTitle: "Something went wrong!",
-        errorMessage:
-          "There seems to be an error. Let's go home and try something else."
-      });
-    });
+            return res.render("results.hbs", {
+              pageTitle: "Search Results",
+              numberResults: "Your search returned no results."
+            });
+          } else {
+            res.render("results.hbs", {
+              pageTitle: "Search Results",
+              body: searchResults,
+              numberResults: `Your search returned ${searchResults.length} results.`
+            });
+          }
+
+    } else {
+
+      axios(`${socrataUrl}?${socrataQuery + "&" + urlQuery}`)
+        .then(response => {
+          let searchResults = response.data;
+
+          // Cache data on Redis for 1800ms
+          client.setex(`${socrataQuery + "&" + urlQuery}`, 1800, JSON.stringify(searchResults));
+          
+          if (searchResults.length === 0) {
+            return res.render("results.hbs", {
+              pageTitle: "Search Results",
+              numberResults: "Your search returned no results."
+            });
+          } else {
+            res.render("results.hbs", {
+              pageTitle: "Search Results",
+              body: searchResults,
+              numberResults: `Your search returned ${searchResults.length} results.`
+            });
+          }
+        })
+        .catch(err => {
+          // res.status(err.response.status);
+          res.render("error.hbs", {
+            pageTitle: "Something went wrong!",
+            errorMessage:
+              "There seems to be an error. Let's go home and try something else."
+          });
+        });      
+    }
+  });
+
 };
+
+// TODO: Refactor controller.post method to use getData()
+const getData = function(url) {
+  // Check cache data from Redis
+  client.get(url, (err, result) => {
+    if (err) return err;
+    // if URL exists as Redis key
+    if (result) {
+      // return Redis value
+      return JSON.parse(result);
+    } else {
+      axios(url)
+        .then(response => {
+            // Save url as Redis key, cache data on Redis for 1800ms
+            client.setex(`${socrataQuery + "&" + urlQuery}`, 1800, JSON.stringify(response.data));
+            return response.data;
+        })
+        .catch(err => err);
+    }
+  });
+}

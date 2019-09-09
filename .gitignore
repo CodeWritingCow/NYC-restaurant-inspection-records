@@ -23,6 +23,9 @@ node_modules
 # Socrata API token
 token.js
 
+# Redis URL
+redisUrl.js
+
 # =========================
 # Operating System Files
 # =========================

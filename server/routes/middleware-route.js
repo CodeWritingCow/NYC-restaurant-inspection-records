@@ -6,6 +6,9 @@ const bodyParser = require("body-parser"); // adds body object to request so app
 const morgan = require("morgan"); // morgan is a HTTP request logger middleware
 const compression = require("compression");
 const middleware = express.Router();
+const responseTime = require('response-time')
+
+middleware.use(responseTime()); // adds X-Response-Time header to server responses
 
 middleware.use(cors());
 // middleware.use(morgan("dev")); // log all HTTP requests in the console
